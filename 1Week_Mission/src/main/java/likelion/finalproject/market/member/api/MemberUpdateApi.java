@@ -3,6 +3,7 @@ package likelion.finalproject.market.member.api;
 import likelion.finalproject.market.member.application.MemberUpdateService;
 import likelion.finalproject.market.member.domain.Member;
 import likelion.finalproject.market.member.dto.request.RequestModify;
+import likelion.finalproject.market.member.dto.request.RequestModifyPassword;
 import likelion.finalproject.market.member.dto.response.ResponseMember;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +29,28 @@ public class MemberUpdateApi {
     }
 
     @PostMapping("/member/modify")
-    public ResponseEntity<ResponseMember> modify (
+    public String modify (
             @ModelAttribute("requestModify") RequestModify requestModify
-            , @AuthenticationPrincipal Member member
     ) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         ResponseMember responseMember = memberUpdateService.update(username, requestModify);
-        return ResponseEntity.ok(responseMember);
+        return "redirect:/";
+    }
+
+    @GetMapping("/member/modifyPassword")
+    public String modifyPassword(Model model) {
+        model.addAttribute("requestModifyPassword", new RequestModifyPassword());
+        return "/member/modifyPassword";
+    }
+
+    @PostMapping("/member/modifyPassword")
+    public String modify (
+            @ModelAttribute("requestModifyPassword") RequestModifyPassword requestModifyPassword
+    ) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        ResponseMember responseMember = memberUpdateService.updatePassword(username, requestModifyPassword);
+        return "redirect:/";
     }
 }

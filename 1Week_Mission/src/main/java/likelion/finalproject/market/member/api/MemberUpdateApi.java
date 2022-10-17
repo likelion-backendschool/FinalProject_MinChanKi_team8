@@ -2,7 +2,6 @@ package likelion.finalproject.market.member.api;
 
 import likelion.finalproject.market.member.application.MemberUpdateService;
 import likelion.finalproject.market.member.domain.Member;
-import likelion.finalproject.market.member.dto.request.RequestJoin;
 import likelion.finalproject.market.member.dto.request.RequestModify;
 import likelion.finalproject.market.member.dto.response.ResponseMember;
 import lombok.RequiredArgsConstructor;

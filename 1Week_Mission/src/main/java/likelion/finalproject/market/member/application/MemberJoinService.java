@@ -1,5 +1,7 @@
 package likelion.finalproject.market.member.application;
 
+import likelion.finalproject.market.mail.application.MailComponent;
+import likelion.finalproject.market.mail.dto.RequestEmailSend;
 import likelion.finalproject.market.member.domain.Auth;
 import likelion.finalproject.market.member.domain.Member;
 import likelion.finalproject.market.member.dto.request.RequestJoin;
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class MemberJoinService {
 
+    private final MailComponent mailComponent;
     private final MemberRepository memberRepository;
     private final MemberUtil memberUtil;
     private final PasswordEncoder passwordEncoder;
@@ -25,6 +28,12 @@ public class MemberJoinService {
         requestJoin.setAuth(auth);
         requestJoin.setPassword(passwordEncoder.encode(requestJoin.getPassword()));
         Member member = memberRepository.save(requestJoin.toEntity());
+        mailComponent.sendMail(RequestEmailSend.builder()
+                        .email(member.getEmail())
+                        .title("가입 축하 메일")
+                        .content("가입을 축하합니다!")
+                        .build()
+        );
         return memberUtil.getResponse(member);
     }
 }

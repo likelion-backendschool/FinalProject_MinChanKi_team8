@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberJoinService {
     private final MemberRepository memberRepository;
-    private MemberUtil memberUtil;
+    private final MemberUtil memberUtil;
 
     public ResponseMember register(RequestJoin requestJoin) {
         Auth auth = memberUtil.getAuth(requestJoin);

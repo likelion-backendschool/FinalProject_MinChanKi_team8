@@ -3,9 +3,11 @@ package likelion.finalproject.market.member.dto.request;
 import likelion.finalproject.market.member.domain.Auth;
 import likelion.finalproject.market.member.domain.Member;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.Nullable;
 
 @Getter
+@Setter
 public class RequestJoin {
     private String username;
     private String email;

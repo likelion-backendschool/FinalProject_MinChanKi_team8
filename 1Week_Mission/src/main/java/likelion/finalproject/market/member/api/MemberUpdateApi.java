@@ -1,14 +1,11 @@
 package likelion.finalproject.market.member.api;
 
 import likelion.finalproject.market.member.application.MemberUpdateService;
-import likelion.finalproject.market.member.domain.Member;
 import likelion.finalproject.market.member.dto.request.RequestModify;
 import likelion.finalproject.market.member.dto.request.RequestModifyPassword;
 import likelion.finalproject.market.member.dto.response.ResponseMember;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

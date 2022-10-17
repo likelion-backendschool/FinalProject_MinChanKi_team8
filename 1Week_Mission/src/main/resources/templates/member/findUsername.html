@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>아이디 찾기</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="flex justify-content-center">
+    <h3>아이디 찾기</h3>
+    <form th:action="@{/member/findUsername}" th:object="${requestFindUsername}" method="post">
+        <div class="mb-3 w-75 justify-content-center">
+            <label for="email" class="form-label">이메일</label>
+            <input type="email" id="email" class="form-control" th:field="*{email}">
+        </div>
+        <input type="submit" value="아이디 찾기" class="btn btn-primary my-2">
+    </form>
+</div>
+</body>
+</html>

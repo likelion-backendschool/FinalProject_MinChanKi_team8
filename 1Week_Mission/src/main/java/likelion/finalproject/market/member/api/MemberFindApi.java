@@ -1,6 +1,8 @@
 package likelion.finalproject.market.member.api;
 
+import likelion.finalproject.market.member.application.MemberComponent;
 import likelion.finalproject.market.member.application.MemberFindService;
+import likelion.finalproject.market.member.dto.request.RequestFindPassword;
 import likelion.finalproject.market.member.dto.request.RequestFindUsername;
 import likelion.finalproject.market.member.dto.request.RequestJoin;
 import likelion.finalproject.market.member.dto.response.ResponseMember;
@@ -18,27 +20,51 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MemberFindApi {
 
     private final MemberFindService memberFindService;
+    private final MemberComponent memberComponent;
 
     @GetMapping("/member/findUsername")
-    public String join(Model model) {
+    public String findUsername(Model model) {
         model.addAttribute("requestFindUsername", new RequestFindUsername());
         return "/member/findUsername";
     }
 
     @PostMapping("/member/findUsername")
-    public String join (
+    public String findUsername (
             @ModelAttribute("requestFindUsername") RequestFindUsername requestFindUsername
             , RedirectAttributes re
     ) {
         ResponseMember responseMember = memberFindService.findUsername(requestFindUsername);
        re.addFlashAttribute("responseMember", responseMember);
 
-        return "redirect:/member/findResult";
+        return "redirect:/member/findUsernameResult";
     }
 
-    @GetMapping("/member/findResult")
-    public String result() {
-        return "/member/findResult";
+    @GetMapping("/member/findPassword")
+    public String findPassword(Model model) {
+        model.addAttribute("requestFindPassword", new RequestFindPassword());
+
+        return "/member/findPassword";
+    }
+
+    @PostMapping("/member/findPassword")
+    public String findPassword (
+            @ModelAttribute("requestFindPassword") RequestFindPassword requestFindPassword
+            , RedirectAttributes re
+    ) {
+        ResponseMember responseMember = memberComponent.findMember(requestFindPassword);
+        re.addFlashAttribute("responseMember", responseMember);
+
+        return "redirect:/member/findPasswordResult";
+    }
+
+    @GetMapping("/member/findUsernameResult")
+    public String usernameResult() {
+        return "/member/findUsernameResult";
+    }
+
+    @GetMapping("/member/findPasswordResult")
+    public String passwordResult() {
+        return "/member/findPasswordResult";
     }
 
 }

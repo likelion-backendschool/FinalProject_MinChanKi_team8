@@ -12,7 +12,7 @@ public class MailComponent {
 
     private final JavaMailSender mailSender;
 
-    public boolean sendMail(RequestEmailSend requestEmailSend) throws Exception {
+    public boolean sendMail(RequestEmailSend requestEmailSend) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("garamminchan@gmail.com");
         message.setTo(requestEmailSend.getEmail());

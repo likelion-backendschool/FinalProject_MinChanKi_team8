@@ -1,13 +1,10 @@
 package likelion.finalproject.market.member.api;
 
-import likelion.finalproject.market.member.application.MemberComponent;
 import likelion.finalproject.market.member.application.MemberFindService;
 import likelion.finalproject.market.member.dto.request.RequestFindPassword;
 import likelion.finalproject.market.member.dto.request.RequestFindUsername;
-import likelion.finalproject.market.member.dto.request.RequestJoin;
 import likelion.finalproject.market.member.dto.response.ResponseMember;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MemberFindApi {
 
     private final MemberFindService memberFindService;
-    private final MemberComponent memberComponent;
 
     @GetMapping("/member/findUsername")
     public String findUsername(Model model) {
@@ -39,6 +35,11 @@ public class MemberFindApi {
         return "redirect:/member/findUsernameResult";
     }
 
+    @GetMapping("/member/findUsernameResult")
+    public String usernameResult() {
+        return "/member/findUsernameResult";
+    }
+
     @GetMapping("/member/findPassword")
     public String findPassword(Model model) {
         model.addAttribute("requestFindPassword", new RequestFindPassword());
@@ -51,20 +52,14 @@ public class MemberFindApi {
             @ModelAttribute("requestFindPassword") RequestFindPassword requestFindPassword
             , RedirectAttributes re
     ) {
-        ResponseMember responseMember = memberComponent.findMember(requestFindPassword);
+        ResponseMember responseMember = memberFindService.findMember(requestFindPassword);
         re.addFlashAttribute("responseMember", responseMember);
 
         return "redirect:/member/findPasswordResult";
-    }
-
-    @GetMapping("/member/findUsernameResult")
-    public String usernameResult() {
-        return "/member/findUsernameResult";
     }
 
     @GetMapping("/member/findPasswordResult")
     public String passwordResult() {
         return "/member/findPasswordResult";
     }
-
 }

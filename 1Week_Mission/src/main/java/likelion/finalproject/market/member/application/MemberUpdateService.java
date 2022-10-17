@@ -50,6 +50,5 @@ public class MemberUpdateService {
         }
 
         throw new IllegalArgumentException("기존 비밀번호가 일치하지 않습니다.");
-
     }
 }

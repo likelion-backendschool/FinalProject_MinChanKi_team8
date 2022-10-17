@@ -6,12 +6,16 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @NoArgsConstructor
 @Getter
+//@Table(name="MEMBERS")
 @Entity
 public class Member {
 
@@ -33,6 +37,7 @@ public class Member {
     private String password;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private Auth auth;
 
     @Builder

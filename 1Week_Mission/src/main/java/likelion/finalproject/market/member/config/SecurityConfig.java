@@ -21,7 +21,9 @@ public class SecurityConfig {
                 .authorizeRequests()
                     .antMatchers(
                             "/css/**", "/js/**",
-                            "/member/join", "/member/login"
+                            "/member/findUsername", "/member/findPassword",
+                            "/member/join",
+                            "/member/login"
                     ).permitAll()
                     .anyRequest().authenticated()
                 .and()

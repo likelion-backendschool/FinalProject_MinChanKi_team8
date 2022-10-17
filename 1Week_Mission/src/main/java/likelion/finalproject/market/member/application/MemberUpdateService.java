@@ -24,8 +24,16 @@ public class MemberUpdateService {
     @Transactional
     public ResponseMember update(String username, RequestModify requestModify) {
         Member member = memberRepository.findByUsername(username).orElseThrow(() -> new NoSuchElementException("해당하는 member가 존재하지 않습니다."));
-        member.updateEmail(requestModify.getEmail());
-        member.updateNickname(requestModify.getNickname());
+
+        if(!requestModify.getNickname().isBlank()) {
+            member.updateEmail(requestModify.getEmail());
+        }
+
+        if(!requestModify.getNickname().isBlank()) {
+            member.updateNickname(requestModify.getNickname());
+            member.setWriter();
+        }
+
         return memberUtil.getResponse(member);
     }
 
@@ -35,6 +43,7 @@ public class MemberUpdateService {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
 
         Member member = memberRepository.findByUsername(username).orElseThrow(() -> new NoSuchElementException("해당하는 member가 존재하지 않습니다."));
+
         if(passwordEncoder.matches(requestModifyPassword.getOldPassword(), member.getPassword())) {
             member.updatePassword(passwordEncoder.encode(requestModifyPassword.getPassword()));
             return memberUtil.getResponse(member);

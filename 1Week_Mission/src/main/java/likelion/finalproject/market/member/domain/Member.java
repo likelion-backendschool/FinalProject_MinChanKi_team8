@@ -61,4 +61,8 @@ public class Member {
     public void updatePassword(String password) {
         this.password = password;
     }
+
+    public void setWriter() {
+        this.auth = Auth.WRITER;
+    }
 }

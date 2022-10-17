@@ -49,4 +49,12 @@ public class Member {
         this.password = password;
         this.auth = auth;
     }
+
+    public void updateEmail(String email) {
+        this.email = email;
+    }
+
+    public void updateNickname(String nickname) {
+        this.nickname = nickname;
+    }
 }

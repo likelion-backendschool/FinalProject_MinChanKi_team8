@@ -1,7 +1,10 @@
-package likelion.finalproject.market.hashTag.domain;
+package likelion.finalproject.market.post.domain;
 
-import likelion.finalproject.market.post.domain.Post;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
+@NoArgsConstructor
+@Getter
 @Entity
 public class PostHashTag {
 
@@ -28,7 +33,15 @@ public class PostHashTag {
     @JoinColumn(name = "post_id")
     private Post post;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "postKeyword_id")
     private PostKeyword postKeyword;
+
+    @Builder
+    public PostHashTag(LocalDate createDate, LocalDate updateDate, Post post, PostKeyword postKeyword) {
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+        this.post = post;
+        this.postKeyword = postKeyword;
+    }
 }

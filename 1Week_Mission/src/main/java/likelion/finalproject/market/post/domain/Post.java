@@ -1,6 +1,5 @@
 package likelion.finalproject.market.post.domain;
 
-import likelion.finalproject.market.hashTag.domain.PostHashTag;
 import likelion.finalproject.market.member.domain.Member;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,9 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import java.time.LocalDate;
-import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -45,14 +42,14 @@ public class Post {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "post")
-    private List<PostHashTag> postHashTags;
-
     @Builder
-    public Post(String subject, String content, String contentHtml, Member member) {
+    public Post(long id, String subject, String content, String contentHtml, LocalDate createDate, LocalDate updateDate, Member member) {
+        this.id = id;
         this.subject = subject;
         this.content = content;
         this.contentHtml = contentHtml;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
         this.member = member;
     }
 

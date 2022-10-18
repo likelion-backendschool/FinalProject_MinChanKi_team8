@@ -1,5 +1,7 @@
 package likelion.finalproject.market.post.dto.param;
 
+import likelion.finalproject.market.member.domain.Member;
+import likelion.finalproject.market.post.domain.Post;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,20 +15,32 @@ import java.time.LocalDate;
 public class PostParam {
     private long id;
     private String subject;
-    private String writer;
     private String content;
     private String contentHtml;
     private LocalDate createDate;
     private LocalDate updateDate;
+    private Member member;
 
     @Builder
-    public PostParam(long id, String subject, String writer, String content, String contentHtml, LocalDate createDate, LocalDate updateDate) {
+    public PostParam(long id, String subject, String content, String contentHtml, LocalDate createDate, LocalDate updateDate, Member member) {
         this.id = id;
         this.subject = subject;
-        this.writer = writer;
         this.content = content;
         this.contentHtml = contentHtml;
         this.createDate = createDate;
         this.updateDate = updateDate;
+        this.member = member;
+    }
+
+    public Post toEntity() {
+        return Post.builder()
+                .id(id)
+                .subject(subject)
+                .content(content)
+                .contentHtml(contentHtml)
+                .createDate(createDate)
+                .updateDate(updateDate)
+                .member(member)
+                .build();
     }
 }

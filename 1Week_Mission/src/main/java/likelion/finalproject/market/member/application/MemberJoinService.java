@@ -34,6 +34,6 @@ public class MemberJoinService {
                         .content("가입을 축하합니다!")
                         .build()
         );
-        return memberUtil.getResponse(member);
+        return memberUtil.getResponseMember(member);
     }
 }

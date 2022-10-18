@@ -34,7 +34,7 @@ public class MemberUpdateService {
             member.setWriter();
         }
 
-        return memberUtil.getResponse(member);
+        return memberUtil.getResponseMember(member);
     }
 
     @Transactional
@@ -46,7 +46,7 @@ public class MemberUpdateService {
 
         if(passwordEncoder.matches(requestModifyPassword.getOldPassword(), member.getPassword())) {
             member.updatePassword(passwordEncoder.encode(requestModifyPassword.getPassword()));
-            return memberUtil.getResponse(member);
+            return memberUtil.getResponseMember(member);
         }
 
         throw new IllegalArgumentException("기존 비밀번호가 일치하지 않습니다.");

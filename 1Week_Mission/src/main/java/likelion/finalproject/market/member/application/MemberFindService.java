@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.security.SecureRandom;
 import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
@@ -28,7 +27,7 @@ public class MemberFindService {
     public ResponseMember findUsername(RequestFindUsername requestFindUsername) {
         Member member = memberRepository.findByEmail(requestFindUsername.getEmail()).orElseThrow(() -> new NoSuchElementException("해당하는 유저가 없습니다"));
 
-        return memberUtil.getResponse(member);
+        return memberUtil.getResponseMember(member);
     }
 
     @Transactional
@@ -46,7 +45,7 @@ public class MemberFindService {
                             .build()
             );
 
-            return memberUtil.getResponse(member);
+            return memberUtil.getResponseMember(member);
         }
 
         throw new NoSuchElementException("해당하는 member가 존재하지 않습니다.");

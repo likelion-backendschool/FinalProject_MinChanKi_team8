@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MemberUtil {
-    public ResponseMember getResponse(Member member) {
+    public ResponseMember getResponseMember(Member member) {
         return ResponseMember.builder()
                 .id(member.getId())
                 .username(member.getUsername())

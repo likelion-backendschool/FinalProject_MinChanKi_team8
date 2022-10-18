@@ -1,6 +1,7 @@
 package likelion.finalproject.market.member.dto.response;
 
 import likelion.finalproject.market.member.domain.Auth;
+import likelion.finalproject.market.member.domain.Member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,5 +22,15 @@ public class ResponseMember {
         this.email = email;
         this.nickname = nickname;
         this.auth = auth;
+    }
+
+    public Member toEntity() {
+        return Member.builder()
+                .id(id)
+                .username(username)
+                .email(email)
+                .nickname(nickname)
+                .auth(auth)
+                .build();
     }
 }

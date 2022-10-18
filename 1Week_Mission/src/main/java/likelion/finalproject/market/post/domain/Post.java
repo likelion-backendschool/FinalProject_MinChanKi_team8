@@ -26,10 +26,10 @@ public class Post {
     @Column(nullable = false)
     private String subject;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 5000)
     private String content;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 5000)
     private String contentHtml;
 
     @Column(nullable = false)
@@ -56,5 +56,9 @@ public class Post {
 
     public void setUpdateDate(LocalDate date) {
         this.updateDate = date;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
     }
 }

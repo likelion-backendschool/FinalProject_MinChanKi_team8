@@ -15,15 +15,17 @@ public class PostParam {
     private String subject;
     private String writer;
     private String content;
+    private String contentHtml;
     private LocalDate createDate;
     private LocalDate updateDate;
 
     @Builder
-    public PostParam(long id, String subject, String writer, String content, LocalDate createDate, LocalDate updateDate) {
+    public PostParam(long id, String subject, String writer, String content, String contentHtml, LocalDate createDate, LocalDate updateDate) {
         this.id = id;
         this.subject = subject;
         this.writer = writer;
         this.content = content;
+        this.contentHtml = contentHtml;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }

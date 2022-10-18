@@ -6,14 +6,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RequestWritePost {
-    private String title;
+public class RequestPost {
+    private String subject;
     private String content;
     private String contentHtml;
 
     public Post toEntity() {
         return Post.builder()
-                .subject(title)
+                .subject(subject)
                 .content(content)
                 .contentHtml(contentHtml)
                 .build();

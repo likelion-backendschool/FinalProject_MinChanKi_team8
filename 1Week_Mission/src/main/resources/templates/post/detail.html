@@ -32,7 +32,7 @@
 <script th:inline="javascript">
     /*<![CDATA[*/ /*]]>*/
     window.onload = function() {
-        let content = [[${post.content}]];
+        let content = [[${post.contentHtml}]];
         document.querySelector('#content').innerHTML = content.toString();
     }
     /*]]>*/

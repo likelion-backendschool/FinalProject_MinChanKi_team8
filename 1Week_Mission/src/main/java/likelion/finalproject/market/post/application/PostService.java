@@ -2,7 +2,7 @@ package likelion.finalproject.market.post.application;
 
 import likelion.finalproject.market.member.dto.param.MemberParam;
 import likelion.finalproject.market.post.domain.Post;
-import likelion.finalproject.market.post.dto.request.RequestWritePost;
+import likelion.finalproject.market.post.dto.request.RequestPost;
 import likelion.finalproject.market.post.dto.param.PostParam;
 import likelion.finalproject.market.post.repository.PostRepository;
 import likelion.finalproject.market.post.util.PostUtil;
@@ -22,8 +22,8 @@ public class PostService {
     private final PostRepository postRepository;
 
     @Transactional
-    public PostParam create(RequestWritePost requestWritePost, MemberParam member) {
-        Post post = requestWritePost.toEntity();
+    public PostParam create(RequestPost requestPost, MemberParam member) {
+        Post post = requestPost.toEntity();
 
         post.setCreateDate(getDate());
         post.setUpdateDate(getDate());

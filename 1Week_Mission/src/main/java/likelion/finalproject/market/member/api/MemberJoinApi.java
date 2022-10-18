@@ -2,7 +2,7 @@ package likelion.finalproject.market.member.api;
 
 import likelion.finalproject.market.member.application.MemberJoinService;
 import likelion.finalproject.market.member.dto.request.RequestJoin;
-import likelion.finalproject.market.member.dto.response.ResponseMember;
+import likelion.finalproject.market.member.dto.param.MemberParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,10 +23,10 @@ public class MemberJoinApi {
     }
 
     @PostMapping("/member/join")
-    public ResponseEntity<ResponseMember> join (
+    public ResponseEntity<MemberParam> join (
             @ModelAttribute("requestJoin") RequestJoin requestJoin
     ) {
-        ResponseMember responseMember = memberJoinService.register(requestJoin);
-        return ResponseEntity.ok(responseMember);
+        MemberParam memberParam = memberJoinService.register(requestJoin);
+        return ResponseEntity.ok(memberParam);
     }
 }

@@ -1,4 +1,4 @@
-package likelion.finalproject.market.post.dto.response;
+package likelion.finalproject.market.post.dto.param;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ResponsePost {
+public class PostParam {
     private long id;
     private String subject;
     private String writer;
@@ -19,7 +19,7 @@ public class ResponsePost {
     private LocalDate updateDate;
 
     @Builder
-    public ResponsePost(long id, String subject, String writer, String content, LocalDate createDate, LocalDate updateDate) {
+    public PostParam(long id, String subject, String writer, String content, LocalDate createDate, LocalDate updateDate) {
         this.id = id;
         this.subject = subject;
         this.writer = writer;

@@ -1,7 +1,7 @@
 package likelion.finalproject.market.post.api;
 
 import likelion.finalproject.market.member.application.MemberComponent;
-import likelion.finalproject.market.member.dto.response.ResponseMember;
+import likelion.finalproject.market.member.dto.param.MemberParam;
 import likelion.finalproject.market.post.application.PostService;
 import likelion.finalproject.market.post.dto.request.RequestWritePost;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class PostApi {
             @ModelAttribute("requestWritePost") RequestWritePost requestWritePost
     ) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        ResponseMember member = memberComponent.findMember(authentication.getName());
+        MemberParam member = memberComponent.findMember(authentication.getName());
         postService.create(requestWritePost, member);
         return "redirect:/";
     }

@@ -12,8 +12,6 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <!-- bootstrap css -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
-
-
 </head>
 <body>
 <form th:action="@{/post/write}" th:object="${requestWritePost}" method="post" onclick="onSubmitValue()">
@@ -44,6 +42,5 @@
         document.getElementById('contentHtml').value = editor.getHTML();
     }
 </script>
-
 </body>
 </html>

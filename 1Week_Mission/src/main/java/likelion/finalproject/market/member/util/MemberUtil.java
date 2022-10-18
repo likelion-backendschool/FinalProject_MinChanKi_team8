@@ -3,13 +3,13 @@ package likelion.finalproject.market.member.util;
 import likelion.finalproject.market.member.domain.Auth;
 import likelion.finalproject.market.member.domain.Member;
 import likelion.finalproject.market.member.dto.request.RequestJoin;
-import likelion.finalproject.market.member.dto.response.ResponseMember;
+import likelion.finalproject.market.member.dto.param.MemberParam;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MemberUtil {
-    public ResponseMember getResponseMember(Member member) {
-        return ResponseMember.builder()
+    public MemberParam getResponseMember(Member member) {
+        return MemberParam.builder()
                 .id(member.getId())
                 .username(member.getUsername())
                 .email(member.getEmail())

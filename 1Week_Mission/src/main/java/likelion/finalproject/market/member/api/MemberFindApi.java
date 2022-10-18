@@ -3,7 +3,7 @@ package likelion.finalproject.market.member.api;
 import likelion.finalproject.market.member.application.MemberFindService;
 import likelion.finalproject.market.member.dto.request.RequestFindPassword;
 import likelion.finalproject.market.member.dto.request.RequestFindUsername;
-import likelion.finalproject.market.member.dto.response.ResponseMember;
+import likelion.finalproject.market.member.dto.param.MemberParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,8 +29,8 @@ public class MemberFindApi {
             @ModelAttribute("requestFindUsername") RequestFindUsername requestFindUsername
             , RedirectAttributes re
     ) {
-        ResponseMember responseMember = memberFindService.findUsername(requestFindUsername);
-       re.addFlashAttribute("responseMember", responseMember);
+        MemberParam memberParam = memberFindService.findUsername(requestFindUsername);
+       re.addFlashAttribute("responseMember", memberParam);
 
         return "redirect:/member/findUsernameResult";
     }
@@ -52,8 +52,8 @@ public class MemberFindApi {
             @ModelAttribute("requestFindPassword") RequestFindPassword requestFindPassword
             , RedirectAttributes re
     ) {
-        ResponseMember responseMember = memberFindService.findMember(requestFindPassword);
-        re.addFlashAttribute("responseMember", responseMember);
+        MemberParam memberParam = memberFindService.findMember(requestFindPassword);
+        re.addFlashAttribute("responseMember", memberParam);
 
         return "redirect:/member/findPasswordResult";
     }

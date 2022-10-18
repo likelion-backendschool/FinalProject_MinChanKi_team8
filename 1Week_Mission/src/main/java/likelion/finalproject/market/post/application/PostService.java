@@ -35,7 +35,7 @@ public class PostService {
     }
 
     public List<PostParam> getIndexPosts() {
-        List<Post> posts = postRepository.findTop100By();
+        List<Post> posts = postRepository.findTop100ByOrderByIdDesc();
         return posts.stream()
                 .map(PostUtil::getResponsePost)
                 .toList();

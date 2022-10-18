@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PostUtil {
 
-    public PostParam getResponsePost(Post post) {
+    public static PostParam getResponsePost(Post post) {
         return PostParam.builder()
                 .id(post.getId())
                 .subject(post.getSubject())

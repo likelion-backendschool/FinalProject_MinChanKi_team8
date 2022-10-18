@@ -11,7 +11,7 @@ public class PostUtil {
         return PostParam.builder()
                 .id(post.getId())
                 .subject(post.getSubject())
-                .content(post.getContent())
+                .content(post.getContentHtml())
                 .writer(post.getMember().getUsername())
                 .createDate(post.getCreateDate())
                 .updateDate(post.getUpdateDate())

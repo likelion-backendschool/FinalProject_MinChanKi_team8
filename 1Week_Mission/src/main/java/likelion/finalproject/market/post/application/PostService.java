@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
 @Service
@@ -45,6 +46,11 @@ public class PostService {
         return posts.stream()
                 .map(PostUtil::getResponsePost)
                 .toList();
+    }
+
+    public PostParam findPost(long id) {
+        Post post = postRepository.findById(id).orElseThrow(() -> new NoSuchElementException("게시물이 존재하지 않습니다"));
+        return postUtil.getResponsePost(post);
     }
 
     private LocalDate getDate() {

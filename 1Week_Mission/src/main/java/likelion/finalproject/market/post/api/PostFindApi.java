@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -27,5 +28,14 @@ public class PostFindApi {
         List<PostParam> postParams = postService.findPosts();
         model.addAttribute("posts", postParams);
         return "/post/list";
+    }
+
+    @GetMapping("/post/{id}")
+    public String postDetail(
+            @PathVariable("id") long id
+            , Model model
+    ) {
+       model.addAttribute("post", postService.findPost(id));
+       return "/post/detail";
     }
 }

@@ -61,6 +61,11 @@ public class PostService {
         return postUtil.getResponsePost(post);
     }
 
+    @Transactional
+    public void deletePost(long id) {
+        postRepository.deleteById(id);
+    }
+
     private LocalDate getDate() {
         return LocalDate.now();
     }

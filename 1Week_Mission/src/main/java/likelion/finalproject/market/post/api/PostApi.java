@@ -56,4 +56,12 @@ public class PostApi {
         postParam = postService.modifyPost(postParam);
         return "redirect:/post/" + postParam.getId();
     }
+
+    @GetMapping("/post/{id}/delete")
+    public String delete(
+            @PathVariable("id") long id
+    ) {
+        postService.deletePost(id);
+        return "redirect:/post/list";
+    }
 }

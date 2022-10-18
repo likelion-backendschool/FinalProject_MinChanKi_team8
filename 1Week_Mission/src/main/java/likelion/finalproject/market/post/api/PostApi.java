@@ -24,10 +24,17 @@ public class PostApi {
     private final PostService postService;
 
     @GetMapping("/")
-    public String index(Model model) {
-        List<PostParam> postParams = postService.getIndexPosts();
+    public String indexList(Model model) {
+        List<PostParam> postParams = postService.findIndexPosts();
         model.addAttribute("posts", postParams);
         return "/index";
+    }
+
+    @GetMapping("/post/list")
+    public String postList(Model model) {
+        List<PostParam> postParams = postService.findPosts();
+        model.addAttribute("posts", postParams);
+        return "/post/list";
     }
 
     @GetMapping("/post/write")

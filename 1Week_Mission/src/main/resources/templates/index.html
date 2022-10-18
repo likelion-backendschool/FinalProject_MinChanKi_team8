@@ -4,7 +4,7 @@
     <title>메인 페이지</title>
 </head>
 <body>
-<h1>Simple_Login</h1>
+<h1>메인 페이지</h1>
 <h3 sec:authorize="isAuthenticated()">반갑습니다. <span sec:authentication="name"></span>님!</h3>
 <hr>
 <a sec:authorize="isAnonymous()" th:href="@{/member/login}">로그인</a>

@@ -3,7 +3,7 @@ package likelion.finalproject.market.member.api;
 import likelion.finalproject.market.member.application.MemberUpdateService;
 import likelion.finalproject.market.member.dto.request.RequestModify;
 import likelion.finalproject.market.member.dto.request.RequestModifyPassword;
-import likelion.finalproject.market.member.dto.response.ResponseMember;
+import likelion.finalproject.market.member.dto.param.MemberParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,7 +31,7 @@ public class MemberUpdateApi {
     ) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        ResponseMember responseMember = memberUpdateService.update(username, requestModify);
+        MemberParam memberParam = memberUpdateService.update(username, requestModify);
         return "redirect:/";
     }
 
@@ -47,7 +47,7 @@ public class MemberUpdateApi {
     ) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        ResponseMember responseMember = memberUpdateService.updatePassword(username, requestModifyPassword);
+        MemberParam memberParam = memberUpdateService.updatePassword(username, requestModifyPassword);
         return "redirect:/";
     }
 }

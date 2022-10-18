@@ -3,7 +3,7 @@ package likelion.finalproject.market.member.application;
 import likelion.finalproject.market.member.domain.Member;
 import likelion.finalproject.market.member.dto.request.RequestModify;
 import likelion.finalproject.market.member.dto.request.RequestModifyPassword;
-import likelion.finalproject.market.member.dto.response.ResponseMember;
+import likelion.finalproject.market.member.dto.param.MemberParam;
 import likelion.finalproject.market.member.repository.MemberRepository;
 import likelion.finalproject.market.member.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ public class MemberUpdateService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public ResponseMember update(String username, RequestModify requestModify) {
+    public MemberParam update(String username, RequestModify requestModify) {
         Member member = memberRepository.findByUsername(username).orElseThrow(() -> new NoSuchElementException("해당하는 member가 존재하지 않습니다."));
 
         if(!requestModify.getNickname().isBlank()) {
@@ -34,11 +34,11 @@ public class MemberUpdateService {
             member.setWriter();
         }
 
-        return memberUtil.getResponse(member);
+        return memberUtil.getResponseMember(member);
     }
 
     @Transactional
-    public ResponseMember updatePassword(String username, RequestModifyPassword requestModifyPassword) {
+    public MemberParam updatePassword(String username, RequestModifyPassword requestModifyPassword) {
         if(!requestModifyPassword.getPassword().equals(requestModifyPassword.getPasswordConfirm()))
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
 
@@ -46,7 +46,7 @@ public class MemberUpdateService {
 
         if(passwordEncoder.matches(requestModifyPassword.getOldPassword(), member.getPassword())) {
             member.updatePassword(passwordEncoder.encode(requestModifyPassword.getPassword()));
-            return memberUtil.getResponse(member);
+            return memberUtil.getResponseMember(member);
         }
 
         throw new IllegalArgumentException("기존 비밀번호가 일치하지 않습니다.");

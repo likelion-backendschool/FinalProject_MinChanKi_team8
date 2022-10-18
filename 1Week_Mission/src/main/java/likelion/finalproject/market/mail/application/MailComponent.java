@@ -1,6 +1,6 @@
 package likelion.finalproject.market.mail.application;
 
-import likelion.finalproject.market.mail.dto.RequestEmailSend;
+import likelion.finalproject.market.mail.dto.RequestSendEmail;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -12,12 +12,12 @@ public class MailComponent {
 
     private final JavaMailSender mailSender;
 
-    public boolean sendMail(RequestEmailSend requestEmailSend) {
+    public boolean sendMail(RequestSendEmail requestSendEmail) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("garamminchan@gmail.com");
-        message.setTo(requestEmailSend.getEmail());
-        message.setSubject(requestEmailSend.getTitle());
-        message.setText(requestEmailSend.getContent());
+        message.setTo(requestSendEmail.getEmail());
+        message.setSubject(requestSendEmail.getTitle());
+        message.setText(requestSendEmail.getContent());
 
         mailSender.send(message);
 

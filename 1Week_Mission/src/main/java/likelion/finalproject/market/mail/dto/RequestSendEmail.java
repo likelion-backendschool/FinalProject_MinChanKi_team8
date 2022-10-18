@@ -6,13 +6,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RequestEmailSend {
+public class RequestSendEmail {
     private String email;
     private String title;
     private String content;
 
     @Builder
-    public RequestEmailSend(String email, String title, String content) {
+    public RequestSendEmail(String email, String title, String content) {
         this.email = email;
         this.title = title;
         this.content = content;

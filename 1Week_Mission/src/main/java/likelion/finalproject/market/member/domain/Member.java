@@ -1,9 +1,11 @@
 package likelion.finalproject.market.member.domain;
 
+import likelion.finalproject.market.post.domain.Post;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,7 +13,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -39,6 +43,9 @@ public class Member {
     @Column
     @Enumerated(EnumType.STRING)
     private Auth auth;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Post> posts;
 
     @Builder
     public Member(long id, String username, String email, String password, String nickname, Auth auth) {

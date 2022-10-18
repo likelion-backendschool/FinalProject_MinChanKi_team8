@@ -1,8 +1,8 @@
 package likelion.finalproject.market.member.domain;
 
 public enum Auth {
-    GENERAL(1),
-    WRITER(2),
+    GENERAL(3),
+    WRITER(4),
     MANAGER(7);
 
     private final int authLevel;

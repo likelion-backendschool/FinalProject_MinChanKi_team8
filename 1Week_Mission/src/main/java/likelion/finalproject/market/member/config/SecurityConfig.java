@@ -20,7 +20,7 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                     .antMatchers(
-                            "/css/**", "/js/**",
+                            "/css/**", "/js/**", "/font/**",
                             "/member/findUsername", "/member/findPassword",
                             "/member/join",
                             "/member/login"

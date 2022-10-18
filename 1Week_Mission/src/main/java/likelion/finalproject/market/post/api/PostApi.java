@@ -47,4 +47,13 @@ public class PostApi {
         model.addAttribute("postParam", postParam);
         return "/post/modify";
     }
+
+    @PostMapping("/post/{id}/modify")
+    public String modify(
+            @PathVariable("id") long id
+            , @ModelAttribute("postParam") PostParam postParam
+    ) {
+        postParam = postService.modifyPost(postParam);
+        return "redirect:/post/" + postParam.getId();
+    }
 }

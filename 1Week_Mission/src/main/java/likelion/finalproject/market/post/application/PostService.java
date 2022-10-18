@@ -53,6 +53,14 @@ public class PostService {
         return postUtil.getResponsePost(post);
     }
 
+    @Transactional
+    public PostParam modifyPost(PostParam postParam) {
+        Post post = postRepository.findById(postParam.getId()).orElseThrow(() -> new NoSuchElementException("게시물이 존재하지 않습니다"));
+        post.updateContent(postParam.getContent());
+        post.updateContentHtml(postParam.getContentHtml());
+        return postUtil.getResponsePost(post);
+    }
+
     private LocalDate getDate() {
         return LocalDate.now();
     }

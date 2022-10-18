@@ -61,4 +61,12 @@ public class Post {
     public void setMember(Member member) {
         this.member = member;
     }
+
+    public void updateContent(String content) {
+        this.content = content;
+    }
+
+    public void updateContentHtml(String contentHtml) {
+        this.contentHtml = contentHtml;
+    }
 }

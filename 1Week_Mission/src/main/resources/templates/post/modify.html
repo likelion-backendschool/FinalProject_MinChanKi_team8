@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
-<form th:action="@{/post/${postParam.id}/write}" th:object="${postParam}" method="post" onclick="onSubmitValue()">
+<form th:action="@{/post/} + ${postParam.id} + @{/modify}" th:object="${postParam}" method="post" onclick="onSubmitValue()">
     <div class="mb-3 justify-content-center d-flex flex-row">
         <label for="title" class="form-label text-center fs-5">제목</label>
         <input type="text" id="title" class="form-control" th:field="*{subject}" value="*{subject}">

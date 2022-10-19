@@ -33,11 +33,23 @@
         <span th:text="${post.updateDate}"></span>
     </div>
 </div>
+<div>
+    <a th:href="@{'/post/' + ${post.id}} + '/modify'">수정하기</a>
+    <input type="button" value="삭제하기" onclick="removeCheck()">
+</div>
 <script th:inline="javascript">
     /*<![CDATA[*/ /*]]>*/
     window.onload = function() {
         let content = [[${post.contentHtml}]];
         document.querySelector('#content').innerHTML = content.toString();
+    }
+
+    function removeCheck() {
+        if (window.confirm("정말 삭제하시겠습니까??") == true){    //확인
+            window.location = '/';
+        }else{   //취소
+            return false;
+        }
     }
     /*]]>*/
 </script>

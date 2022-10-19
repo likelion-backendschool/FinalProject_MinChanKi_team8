@@ -23,7 +23,8 @@ public class SecurityConfig {
                             "/css/**", "/js/**", "/font/**",
                             "/member/findUsername", "/member/findPassword",
                             "/member/join",
-                            "/member/login"
+                            "/member/login",
+                            "/", "/post/list"
                     ).permitAll()
                     .anyRequest().authenticated()
                 .and()

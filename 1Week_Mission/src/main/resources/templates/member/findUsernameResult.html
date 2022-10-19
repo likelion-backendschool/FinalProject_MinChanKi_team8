@@ -8,7 +8,13 @@
 <body>
 <div class="flex justify-content-center">
     <h3>아이디 찾기 결과</h3>
-    <span th:text="${memberParam.username}"></span>
+    <div>
+        아이디: <span th:text="${responseMember.username}"></span>
+    </div>
+    <div>
+        <a href="/member/login">로그인 화면으로</a>
+        <a href="/member/findPassword">비밀번호 찾기</a>
+    </div>
 </div>
 </body>
 </html>

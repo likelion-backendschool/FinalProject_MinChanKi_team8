@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
 @Service
-public class MemberUpdateService {
+public class MemberModifyService {
 
     private final PasswordEncoder passwordEncoder;
     private final MemberUtil memberUtil;

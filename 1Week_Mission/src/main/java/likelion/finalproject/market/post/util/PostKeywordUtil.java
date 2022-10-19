@@ -2,18 +2,13 @@ package likelion.finalproject.market.post.util;
 
 import likelion.finalproject.market.post.domain.PostKeyword;
 import likelion.finalproject.market.post.dto.param.PostKeywordParam;
-import likelion.finalproject.util.UtilComponent;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class PostKeywordUtil {
-
-    private  LocalDate now = UtilComponent.getDate();
-
+public class PostKeywordUtil {;
     public PostKeywordParam getPostKeywordParam(PostKeyword postKeyword) {
         return PostKeywordParam.builder()
                 .id(postKeyword.getId())

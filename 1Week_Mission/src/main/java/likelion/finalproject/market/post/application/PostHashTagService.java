@@ -6,6 +6,7 @@ import likelion.finalproject.market.post.domain.PostKeyword;
 import likelion.finalproject.market.post.dto.param.PostKeywordParam;
 import likelion.finalproject.market.post.dto.param.PostParam;
 import likelion.finalproject.market.post.repository.PostHashTagRepository;
+import likelion.finalproject.market.post.util.PostHashTagUitl;
 import likelion.finalproject.market.post.util.PostKeywordUtil;
 import likelion.finalproject.market.post.util.PostUtil;
 import likelion.finalproject.util.UtilComponent;
@@ -20,53 +21,24 @@ import java.util.List;
 @Service
 public class PostHashTagService {
 
-    private final PostKeywordUtil postKeywordUtil;
+    private final PostHashTagUitl postHashTagUitl;
     private final PostHashTagRepository postHashTagRepository;
 
     @Transactional
     public PostParam createPostHashTag(PostParam postParam, PostKeywordParam postKeywordParam) {
-        PostHashTag postHashTags = postHashTagRepository.save(getPostHashTag(postParam.toEntity(), postKeywordParam.toEntity()));
+        PostHashTag postHashTags = postHashTagRepository.save(postHashTagUitl.getPostHashTag(postParam.toEntity(), postKeywordParam.toEntity()));
         return PostUtil.getPostParam(postHashTags.getPost());
     }
 
     @Transactional
     public PostParam createPostHashTag(PostParam postParam, List<PostKeywordParam> postKeywordParams) {
-        List<PostHashTag> postHashTags = postHashTagRepository.saveAll(getPostHashTags(postParam.toEntity(), getPostKeywords(postKeywordParams)));
+        List<PostHashTag> postHashTags = postHashTagUitl.getPostHashTags(postParam.toEntity(), postHashTagUitl.getPostKeywords(postKeywordParams));
+        postHashTagRepository.saveAll(postHashTags);
+
         return PostUtil.getPostParam(postHashTags.get(0).getPost());
     }
 
-    private PostHashTag getPostHashTag(Post post, PostKeyword postKeyword) {
-        LocalDate now = UtilComponent.getDate();
-
-        return PostHashTag.builder()
-                .createDate(now)
-                .updateDate(now)
-                .post(post)
-                .postKeyword(postKeyword)
-                .build();
-    }
-
-    private List<PostHashTag> getPostHashTags(Post post, List<PostKeyword> postKeywords) {
-        LocalDate now = UtilComponent.getDate();
-
-        return postKeywords.stream()
-                .map(postKeyword ->
-                        PostHashTag.builder()
-                                .createDate(now)
-                                .updateDate(now)
-                                .post(post)
-                                .postKeyword(postKeyword)
-                                .build()
-                ).toList();
-    }
-
-    private List<PostKeyword> getPostKeywords(List<PostKeywordParam> postKeywordParams) {
-        return postKeywordParams.stream()
-                .map(PostKeywordParam::toEntity
-                ).toList();
-    }
-
-    // postKeywordParam을 postHashTag에서 조회 (불편하지만 일단..)
+    // postKeywordParam을 postHashTag에서 조회 -> 추후 postKeyword에서 Query를 이용하여 처리
     public String findKeywords(long postId) {
         List<PostHashTag> postHashTags = postHashTagRepository.findAllByPost_Id(postId);
 

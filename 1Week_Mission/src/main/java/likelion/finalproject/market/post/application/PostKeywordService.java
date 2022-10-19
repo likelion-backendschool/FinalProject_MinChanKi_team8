@@ -7,6 +7,7 @@ import likelion.finalproject.market.post.util.PostKeywordUtil;
 import likelion.finalproject.util.UtilComponent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class PostKeywordService {
     private final PostKeywordUtil postKeywordUtil;
     private final PostKeywordRepository postKeywordRepository;
 
+    @Transactional
     public PostKeywordParam createKeyword(String keyword) {
         LocalDate now = UtilComponent.getDate();
 
@@ -33,7 +35,7 @@ public class PostKeywordService {
         return postKeywordUtil.getPostKeywordParam(postKeyword);
     }
 
-    public List<PostKeywordParam> getKeywordParams(String keywords) {
+    public List<PostKeywordParam> getPostKeywordParams(String keywords) {
 
         List<PostKeywordParam> postKeywordParams = new ArrayList<>();
 

@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>글 수정</title>
+    <title>글 수정하기</title>
     <!-- Toast UI Editor -->
     <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
@@ -14,10 +14,15 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
+<h2>글 수정하기</h2>
 <form th:action="@{/post/} + ${postParam.id} + @{/modify}" th:object="${postParam}" method="post" onclick="onSubmitValue()">
     <div class="mb-3 justify-content-center d-flex flex-row">
         <label for="title" class="form-label text-center fs-5">제목</label>
         <input type="text" id="title" class="form-control" th:field="*{subject}" value="*{subject}">
+    </div>
+    <div class="mb-3 justify-content-center d-flex flex-row">
+        <label for="keywords" class="form-label text-center fs-5">해시태그</label>
+        <input type="text" id="keywords" class="form-control" th:value="${keywords}">
     </div>
     <div>
         <div id="editor"></div>

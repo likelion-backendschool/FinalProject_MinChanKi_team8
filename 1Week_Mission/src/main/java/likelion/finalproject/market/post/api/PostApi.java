@@ -56,8 +56,8 @@ public class PostApi {
             @PathVariable("id") long id
             , Model model
     ) {
-        PostParam postParam = postService.findPost(id);
-        model.addAttribute("postParam", postParam);
+        model.addAttribute("postParam", postService.findPost(id));
+        model.addAttribute("keywords", postHashTagService.findKeywords(id));
         return "/post/modify";
     }
 

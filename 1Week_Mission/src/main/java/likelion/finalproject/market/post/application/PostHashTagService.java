@@ -51,14 +51,18 @@ public class PostHashTagService {
     }
 
     // postKeywordParam을 postHashTag에서 조회 (불편하지만 일단..)
-    public List<PostKeywordParam> findKeywords(long postId) {
+    public String findKeywords(long postId) {
         List<PostHashTag> postHashTags = postHashTagRepository.findAllByPost_Id(postId);
 
         if(postHashTags.size() < 1)
-            return new ArrayList<>();
+            return "";
 
-        return postHashTags.stream().map(
-                postHashTag -> postKeywordUtil.getPostKeywordParam(postHashTag.getPostKeyword())
-            ).toList();
+        StringBuilder sb = new StringBuilder();
+        postHashTags.stream()
+                .forEach(postHashTag ->
+                        sb.append(postHashTag.getPostKeyword().getContent()).append(" ")
+                );
+
+        return sb.toString();
     }
 }

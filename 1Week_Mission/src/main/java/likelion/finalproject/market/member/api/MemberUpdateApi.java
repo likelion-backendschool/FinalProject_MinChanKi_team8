@@ -31,7 +31,7 @@ public class MemberUpdateApi {
     ) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        MemberParam memberParam = memberUpdateService.update(username, requestModify);
+        memberUpdateService.update(username, requestModify);
         return "redirect:/";
     }
 
@@ -47,7 +47,7 @@ public class MemberUpdateApi {
     ) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        MemberParam memberParam = memberUpdateService.updatePassword(username, requestModifyPassword);
+        memberUpdateService.updatePassword(username, requestModifyPassword);
         return "redirect:/";
     }
 }

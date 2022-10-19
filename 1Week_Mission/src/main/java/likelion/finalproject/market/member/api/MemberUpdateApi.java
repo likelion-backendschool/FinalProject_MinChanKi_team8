@@ -1,9 +1,8 @@
 package likelion.finalproject.market.member.api;
 
-import likelion.finalproject.market.member.application.MemberUpdateService;
+import likelion.finalproject.market.member.application.MemberModifyService;
 import likelion.finalproject.market.member.dto.request.RequestModify;
 import likelion.finalproject.market.member.dto.request.RequestModifyPassword;
-import likelion.finalproject.market.member.dto.param.MemberParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class MemberUpdateApi {
 
-    private final MemberUpdateService memberUpdateService;
+    private final MemberModifyService memberModifyService;
 
     @GetMapping("/member/modify")
     public String modify(Model model) {
@@ -31,7 +30,7 @@ public class MemberUpdateApi {
     ) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        memberUpdateService.update(username, requestModify);
+        memberModifyService.update(username, requestModify);
         return "redirect:/";
     }
 
@@ -47,7 +46,7 @@ public class MemberUpdateApi {
     ) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        memberUpdateService.updatePassword(username, requestModifyPassword);
+        memberModifyService.updatePassword(username, requestModifyPassword);
         return "redirect:/";
     }
 }

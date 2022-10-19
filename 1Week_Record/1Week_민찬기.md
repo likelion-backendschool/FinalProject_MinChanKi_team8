@@ -8,15 +8,22 @@
 
 ![image](https://user-images.githubusercontent.com/92210823/196600285-b569c15d-8761-4c4a-94d4-8ad86569b86b.png)
 
-- 회원 <br>
-  ✅ 회원가입 (중복검사) <br>
-  ✅ 로그인 & 로그아웃 (Security) <br>
-  ✅ 회원정보수정 <br>
-  (유저 구현 시 nickname에 따른 권한 설정 주의) <br>
-  ✅ 아이디 & 비밀번호 찾기 <br>
-- 글 <br>
-  ✅ CRUD <br>
-  ✅ HashTag (N:M 맵핑) <br>
+#### 회원
+  ✅ 회원가입 (중복검사)
+  
+  ✅ 로그인 & 로그아웃 (Security)
+  
+  ✅ 회원정보수정 
+  
+  (유저 구현 시 nickname에 따른 권한 설정 주의)
+  
+  ✅ 아이디 & 비밀번호 찾기
+  
+#### 글
+
+  ✅ CRUD
+  
+  ✅ HashTag (N:M 맵핑)
 
 
 ### 1주차 미션 요약

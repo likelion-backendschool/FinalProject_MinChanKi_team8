@@ -10,6 +10,7 @@ public class RequestPost {
     private String subject;
     private String content;
     private String contentHtml;
+    private String keywords;
 
     public Post toEntity() {
         return Post.builder()

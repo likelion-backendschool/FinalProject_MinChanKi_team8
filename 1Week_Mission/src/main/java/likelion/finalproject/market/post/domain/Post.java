@@ -43,10 +43,13 @@ public class Post {
     private Member member;
 
     @Builder
-    public Post(String subject, String content, String contentHtml, Member member) {
+    public Post(long id, String subject, String content, String contentHtml, LocalDate createDate, LocalDate updateDate, Member member) {
+        this.id = id;
         this.subject = subject;
         this.content = content;
         this.contentHtml = contentHtml;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
         this.member = member;
     }
 

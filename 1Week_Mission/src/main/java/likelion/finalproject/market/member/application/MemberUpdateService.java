@@ -19,17 +19,24 @@ public class MemberUpdateService {
 
     private final PasswordEncoder passwordEncoder;
     private final MemberUtil memberUtil;
+    private final MemberComponent memberComponent;
     private final MemberRepository memberRepository;
 
     @Transactional
     public MemberParam update(String username, RequestModify requestModify) {
         Member member = memberRepository.findByUsername(username).orElseThrow(() -> new NoSuchElementException("해당하는 member가 존재하지 않습니다."));
 
-        if(!requestModify.getNickname().isBlank()) {
+        if(!requestModify.getEmail().isBlank()) {
+            if(memberComponent.isDuplicateEmail(requestModify.getEmail())) {
+                throw new IllegalArgumentException("중복된 이메일입니다");
+            }
             member.updateEmail(requestModify.getEmail());
         }
 
         if(!requestModify.getNickname().isBlank()) {
+            if(memberComponent.isDuplicateNickname(requestModify.getNickname())) {
+                throw new IllegalArgumentException("중복된 닉네임입니다");
+            }
             member.updateNickname(requestModify.getNickname());
             member.setWriter();
         }

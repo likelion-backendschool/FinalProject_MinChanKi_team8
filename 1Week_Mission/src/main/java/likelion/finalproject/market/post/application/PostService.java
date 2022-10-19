@@ -2,7 +2,6 @@ package likelion.finalproject.market.post.application;
 
 import likelion.finalproject.market.member.dto.param.MemberParam;
 import likelion.finalproject.market.post.domain.Post;
-import likelion.finalproject.market.post.domain.PostKeyword;
 import likelion.finalproject.market.post.dto.param.PostParam;
 import likelion.finalproject.market.post.dto.request.RequestPost;
 import likelion.finalproject.market.post.repository.PostRepository;
@@ -62,6 +61,7 @@ public class PostService {
         Post post = postRepository.findById(postParam.getId()).orElseThrow(() -> new NoSuchElementException("게시물이 존재하지 않습니다"));
         post.updateContent(postParam.getContent());
         post.updateContentHtml(postParam.getContentHtml());
+        post.setUpdateDate(UtilComponent.getDate());
         return postUtil.getPostParam(post);
     }
 

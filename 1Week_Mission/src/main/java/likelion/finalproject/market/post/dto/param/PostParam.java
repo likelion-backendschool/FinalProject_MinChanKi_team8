@@ -20,9 +20,10 @@ public class PostParam {
     private LocalDate createDate;
     private LocalDate updateDate;
     private Member member;
+    private String keywords;
 
     @Builder
-    public PostParam(long id, String subject, String content, String contentHtml, LocalDate createDate, LocalDate updateDate, Member member) {
+    public PostParam(long id, String subject, String content, String contentHtml, LocalDate createDate, LocalDate updateDate, Member member, String keywords) {
         this.id = id;
         this.subject = subject;
         this.content = content;
@@ -30,6 +31,7 @@ public class PostParam {
         this.createDate = createDate;
         this.updateDate = updateDate;
         this.member = member;
+        this.keywords = keywords;
     }
 
     public Post toEntity() {

@@ -1,15 +1,8 @@
 package likelion.finalproject.market.post.util;
 
-import likelion.finalproject.market.member.dto.param.MemberParam;
 import likelion.finalproject.market.post.domain.Post;
-import likelion.finalproject.market.post.domain.PostKeyword;
-import likelion.finalproject.market.post.dto.param.PostKeywordParam;
 import likelion.finalproject.market.post.dto.param.PostParam;
-import likelion.finalproject.market.post.dto.request.RequestPost;
-import likelion.finalproject.util.UtilComponent;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
 
 @Component
 public class PostUtil {
@@ -24,13 +17,5 @@ public class PostUtil {
                 .createDate(post.getCreateDate())
                 .updateDate(post.getUpdateDate())
                 .build();
-    }
-
-    public PostParam updatePostParam(PostParam postParam, RequestPost requestPost) {
-        postParam.setSubject(requestPost.getSubject());
-        postParam.setContent(requestPost.getContent());
-        postParam.setContentHtml(requestPost.getContentHtml());
-
-        return postParam;
     }
 }

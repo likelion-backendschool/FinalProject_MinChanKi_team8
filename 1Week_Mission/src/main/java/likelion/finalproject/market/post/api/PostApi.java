@@ -25,7 +25,6 @@ import java.util.List;
 @Controller
 public class PostApi {
 
-    private final PostUtil postutil;
     private final MemberComponent memberComponent;
     private final PostKeywordService postKeywordService;
     private final PostHashTagService postHashTagService;
@@ -56,22 +55,20 @@ public class PostApi {
             @PathVariable("id") long id
             , Model model
     ) {
-        model.addAttribute("requestPost", new RequestPost());
-        model.addAttribute("postParam", postService.findPost(id));
-        model.addAttribute("keywords", postHashTagService.findKeywords(id));
+        PostParam postParam = postService.findPost(id);
+        String keywords = postHashTagService.findKeywords(id);
+        postParam.setKeywords(keywords);
+        model.addAttribute("postParam", postParam);
         return "/post/modify";
     }
 
     @PostMapping("/post/{id}/modify")
     public String modify(
             @PathVariable("id") long id
-            , @ModelAttribute("reuqestPost") RequestPost requestPost
             , @ModelAttribute("postParam") PostParam postParam
-            , @ModelAttribute("keywords") String keywords
     ) {
-        postParam = postutil.updatePostParam(postParam, requestPost);
+        List<PostKeywordParam> postKeywordParams = postKeywordService.getKeywordParams(postParam.getKeywords());
         postParam = postService.modifyPost(postParam);
-        List<PostKeywordParam> postKeywordParams = postKeywordService.getKeywordParams(requestPost.getKeywords());
         postHashTagService.updatePostHashTags(postParam, postKeywordParams);
 
         return "redirect:/post/" + postParam.getId();

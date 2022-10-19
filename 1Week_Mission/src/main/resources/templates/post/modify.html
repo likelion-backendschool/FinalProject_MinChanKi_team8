@@ -18,17 +18,17 @@
 <form th:action="@{/post/} + ${postParam.id} + @{/modify}" method="post" onclick="onSubmitValue()">
     <div class="mb-3 justify-content-center d-flex flex-row">
         <label for="title" class="form-label text-center fs-5">제목</label>
-        <input type="text" id="title" class="form-control" th:value="${postParam.subject}" th:field="${requestPost.subject}">
+        <input type="text" id="title" class="form-control" th:field="${postParam.subject}">
     </div>
     <div class="mb-3 justify-content-center d-flex flex-row">
         <label for="keywords" class="form-label text-center fs-5">해시태그</label>
-        <input type="text" id="keywords" class="form-control" th:value="${keywords}" th:field="${requestPost.keywords}">
+        <input type="text" id="keywords" class="form-control" th:field="${postParam.keywords}">
     </div>
     <div>
         <div id="editor"></div>
     </div>
-    <input type="hidden" id="content" th:field="${requestPost.content}" value="" />
-    <input type="hidden" id="contentHtml" th:field="${requestPost.contentHtml}" value="" />
+    <input type="hidden" id="content" th:field="${postParam.content}" value="" />
+    <input type="hidden" id="contentHtml" th:field="${postParam.contentHtml}" value="" />
 
     <input type="submit" value="작성하기" class="btn btn-primary my-2">
 </form>

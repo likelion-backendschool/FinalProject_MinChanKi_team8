@@ -1,6 +1,5 @@
 package likelion.finalproject.market.post.application;
 
-import likelion.finalproject.market.post.domain.Post;
 import likelion.finalproject.market.post.domain.PostKeyword;
 import likelion.finalproject.market.post.dto.param.PostKeywordParam;
 import likelion.finalproject.market.post.repository.PostKeywordRepository;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service

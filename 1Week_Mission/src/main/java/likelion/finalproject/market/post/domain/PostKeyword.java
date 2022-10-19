@@ -30,7 +30,6 @@ public class PostKeyword {
     private LocalDate updateDate;
 
     @Builder
-
     public PostKeyword(long id, String content, LocalDate createDate, LocalDate updateDate) {
         this.id = id;
         this.content = content;

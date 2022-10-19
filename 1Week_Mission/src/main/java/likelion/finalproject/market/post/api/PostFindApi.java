@@ -1,5 +1,7 @@
 package likelion.finalproject.market.post.api;
 
+import likelion.finalproject.market.post.application.PostHashTagService;
+import likelion.finalproject.market.post.application.PostKeywordService;
 import likelion.finalproject.market.post.application.PostService;
 import likelion.finalproject.market.post.dto.param.PostParam;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.List;
 public class PostFindApi {
 
     private final PostService postService;
+    private final PostHashTagService postHashTagService;
 
     @GetMapping("/")
     public String indexList(Model model) {
@@ -35,7 +38,8 @@ public class PostFindApi {
             @PathVariable("id") long id
             , Model model
     ) {
-       model.addAttribute("post", postService.findPost(id));
-       return "/post/detail";
+        model.addAttribute("post", postService.findPost(id));
+        model.addAttribute("keywords", postHashTagService.findKeywords(id));
+        return "/post/detail";
     }
 }

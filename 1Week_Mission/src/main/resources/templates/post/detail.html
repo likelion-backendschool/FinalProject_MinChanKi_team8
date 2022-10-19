@@ -17,6 +17,12 @@
         <span th:text="${post.member.username}"></span>
     </div>
     <div>
+        <h2>태그</h2>
+        <div th:each="keyword, index : ${keywords}">
+            <span th:text="${keyword.content}"></span>
+        </div>
+    </div>
+    <div>
         <h2>내용</h2>
         <div id="content"></div>
     </div>

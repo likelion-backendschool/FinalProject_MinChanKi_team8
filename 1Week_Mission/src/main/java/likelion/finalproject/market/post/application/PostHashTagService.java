@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -25,9 +24,26 @@ public class PostHashTagService {
     private final PostHashTagRepository postHashTagRepository;
 
     @Transactional
-    public PostParam createPostHashTags(PostParam postParam, List<PostKeywordParam> postKeywordParams) {
+    public PostParam createPostHashTag(PostParam postParam, PostKeywordParam postKeywordParam) {
+        PostHashTag postHashTags = postHashTagRepository.save(getPostHashTag(postParam.toEntity(), postKeywordParam.toEntity()));
+        return PostUtil.getPostParam(postHashTags.getPost());
+    }
+
+    @Transactional
+    public PostParam createPostHashTag(PostParam postParam, List<PostKeywordParam> postKeywordParams) {
         List<PostHashTag> postHashTags = postHashTagRepository.saveAll(getPostHashTags(postParam.toEntity(), getPostKeywords(postKeywordParams)));
         return PostUtil.getPostParam(postHashTags.get(0).getPost());
+    }
+
+    private PostHashTag getPostHashTag(Post post, PostKeyword postKeyword) {
+        LocalDate now = UtilComponent.getDate();
+
+        return PostHashTag.builder()
+                .createDate(now)
+                .updateDate(now)
+                .post(post)
+                .postKeyword(postKeyword)
+                .build();
     }
 
     private List<PostHashTag> getPostHashTags(Post post, List<PostKeyword> postKeywords) {
@@ -64,5 +80,35 @@ public class PostHashTagService {
                 );
 
         return sb.toString();
+    }
+
+    @Transactional
+    public void updatePostHashTags(PostParam postParam, List<PostKeywordParam> postKeywordParams) {
+        List<PostHashTag> postHashTags = postHashTagRepository.findAllByPost_Id(postParam.getId());
+
+        postKeywordParams:
+        for(PostKeywordParam postKeywordParam : postKeywordParams) {
+            for(PostHashTag postHashTag : postHashTags) {
+                if(postKeywordParam.getId() == postHashTag.getPostKeyword().getId()) {
+                    continue postKeywordParams;
+                }
+            }
+            createPostHashTag(postParam, postKeywordParam);
+        }
+
+        postHashTags:
+        for(PostHashTag postHashTag : postHashTags) {
+            for(PostKeywordParam postKeywordParam : postKeywordParams) {
+                if(postKeywordParam.getId() == postHashTag.getPostKeyword().getId()) {
+                    continue postHashTags;
+                }
+            }
+            deletePostHashTag(postHashTag);
+        }
+    }
+
+    @Transactional
+    public void deletePostHashTag(PostHashTag postHashTag) {
+        postHashTagRepository.delete(postHashTag);
     }
 }

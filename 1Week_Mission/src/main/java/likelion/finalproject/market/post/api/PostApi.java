@@ -25,7 +25,7 @@ import java.util.List;
 @Controller
 public class PostApi {
 
-    private final PostUtil postUtil;
+    private final PostUtil postutil;
     private final MemberComponent memberComponent;
     private final PostKeywordService postKeywordService;
     private final PostHashTagService postHashTagService;
@@ -44,9 +44,9 @@ public class PostApi {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         MemberParam memberParam = memberComponent.findMember(authentication.getName());
         PostParam postParam = postService.createPost(requestPost, memberParam);
-        List<PostKeywordParam> postKeywordParams = postKeywordService.getUniqueKeywordParams(requestPost.getKeywords());
+        List<PostKeywordParam> postKeywordParams = postKeywordService.getKeywordParams(requestPost.getKeywords());
 
-        postParam = postHashTagService.createPostHashTags(postParam, postKeywordParams);
+        postParam = postHashTagService.createPostHashTag(postParam, postKeywordParams);
 
         return "redirect:/post/" + postParam.getId();
     }
@@ -56,6 +56,7 @@ public class PostApi {
             @PathVariable("id") long id
             , Model model
     ) {
+        model.addAttribute("requestPost", new RequestPost());
         model.addAttribute("postParam", postService.findPost(id));
         model.addAttribute("keywords", postHashTagService.findKeywords(id));
         return "/post/modify";
@@ -64,9 +65,15 @@ public class PostApi {
     @PostMapping("/post/{id}/modify")
     public String modify(
             @PathVariable("id") long id
+            , @ModelAttribute("reuqestPost") RequestPost requestPost
             , @ModelAttribute("postParam") PostParam postParam
+            , @ModelAttribute("keywords") String keywords
     ) {
+        postParam = postutil.updatePostParam(postParam, requestPost);
         postParam = postService.modifyPost(postParam);
+        List<PostKeywordParam> postKeywordParams = postKeywordService.getKeywordParams(requestPost.getKeywords());
+        postHashTagService.updatePostHashTags(postParam, postKeywordParams);
+
         return "redirect:/post/" + postParam.getId();
     }
 

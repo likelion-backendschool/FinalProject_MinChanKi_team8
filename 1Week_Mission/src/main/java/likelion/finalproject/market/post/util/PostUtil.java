@@ -25,4 +25,12 @@ public class PostUtil {
                 .updateDate(post.getUpdateDate())
                 .build();
     }
+
+    public PostParam updatePostParam(PostParam postParam, RequestPost requestPost) {
+        postParam.setSubject(requestPost.getSubject());
+        postParam.setContent(requestPost.getContent());
+        postParam.setContentHtml(requestPost.getContentHtml());
+
+        return postParam;
+    }
 }

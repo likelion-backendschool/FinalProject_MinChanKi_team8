@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -34,7 +33,7 @@ public class PostKeywordService {
         return postKeywordUtil.getPostKeywordParam(postKeyword);
     }
 
-    public List<PostKeywordParam> getUniqueKeywordParams(String keywords) {
+    public List<PostKeywordParam> getKeywordParams(String keywords) {
 
         List<PostKeywordParam> postKeywordParams = new ArrayList<>();
 

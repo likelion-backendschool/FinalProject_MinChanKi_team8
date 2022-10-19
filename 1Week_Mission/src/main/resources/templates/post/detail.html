@@ -18,9 +18,7 @@
     </div>
     <div>
         <h2>태그</h2>
-        <div th:each="keyword, index : ${keywords}">
-            <span th:text="${keyword.content}"></span>
-        </div>
+        <span th:text="${keywords}"></span>
     </div>
     <div>
         <h2>내용</h2>

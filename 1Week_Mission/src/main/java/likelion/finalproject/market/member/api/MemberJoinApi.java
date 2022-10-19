@@ -23,10 +23,10 @@ public class MemberJoinApi {
     }
 
     @PostMapping("/member/join")
-    public ResponseEntity<MemberParam> join (
+    public String join (
             @ModelAttribute("requestJoin") RequestJoin requestJoin
     ) {
         MemberParam memberParam = memberJoinService.register(requestJoin);
-        return ResponseEntity.ok(memberParam);
+        return "redirect:/";
     }
 }

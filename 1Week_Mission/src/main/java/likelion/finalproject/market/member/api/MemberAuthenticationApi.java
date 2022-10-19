@@ -18,6 +18,6 @@ public class MemberAuthenticationApi {
 
     @GetMapping("/member/logout")
     public String logout() {
-        return "redirect:/member/login";
+        return "redirect:/";
     }
 }

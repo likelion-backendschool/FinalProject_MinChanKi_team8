@@ -14,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import java.time.LocalDate;
 
 @Getter
@@ -46,4 +45,12 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "post_keyword_id")
     private PostKeyword postKeyword;
+
+    public void updateSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public void updatePrice(int price) {
+        this.price = price;
+    }
 }

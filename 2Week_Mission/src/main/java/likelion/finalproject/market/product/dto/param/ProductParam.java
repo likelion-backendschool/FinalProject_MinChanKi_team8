@@ -2,7 +2,6 @@ package likelion.finalproject.market.product.dto.param;
 
 import likelion.finalproject.market.member.domain.Member;
 import likelion.finalproject.market.post.domain.PostKeyword;
-import likelion.finalproject.market.post.dto.param.PostKeywordParam;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

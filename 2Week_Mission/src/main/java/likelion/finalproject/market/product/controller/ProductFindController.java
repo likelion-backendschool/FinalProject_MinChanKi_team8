@@ -1,6 +1,5 @@
 package likelion.finalproject.market.product.controller;
 
-import likelion.finalproject.market.product.application.ProductCreateService;
 import likelion.finalproject.market.product.application.ProductFindService;
 import likelion.finalproject.market.product.dto.param.ProductParam;
 import lombok.RequiredArgsConstructor;

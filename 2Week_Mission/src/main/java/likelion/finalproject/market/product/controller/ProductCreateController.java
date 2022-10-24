@@ -4,7 +4,6 @@ import likelion.finalproject.market.member.application.MemberComponent;
 import likelion.finalproject.market.member.dto.param.MemberParam;
 import likelion.finalproject.market.post.application.PostKeywordService;
 import likelion.finalproject.market.post.dto.param.PostKeywordParam;
-import likelion.finalproject.market.post.dto.param.PostParam;
 import likelion.finalproject.market.product.application.ProductCreateService;
 import likelion.finalproject.market.product.dto.param.ProductParam;
 import likelion.finalproject.market.product.dto.request.RequestProductCreate;

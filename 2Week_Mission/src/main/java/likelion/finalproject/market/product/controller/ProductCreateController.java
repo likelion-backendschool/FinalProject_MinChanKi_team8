@@ -4,7 +4,7 @@ import likelion.finalproject.market.member.application.MemberComponent;
 import likelion.finalproject.market.member.dto.param.MemberParam;
 import likelion.finalproject.market.post.application.PostKeywordService;
 import likelion.finalproject.market.post.dto.param.PostKeywordParam;
-import likelion.finalproject.market.product.application.ProductCreateService;
+import likelion.finalproject.market.product.application.ProductService;
 import likelion.finalproject.market.product.dto.param.ProductParam;
 import likelion.finalproject.market.product.dto.request.RequestProductCreate;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("product")
 @Controller
 public class ProductCreateController {
-    private final ProductCreateService productCreateService;
+    private final ProductService productService;
     private final MemberComponent memberComponent;
     private final PostKeywordService postKeywordService;
 
@@ -41,7 +41,7 @@ public class ProductCreateController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         MemberParam memberParam = memberComponent.findMember(authentication.getName());
         // 상품 등록
-        ProductParam productParam = productCreateService.createProduct(requestProductCreate, memberParam, postKeywordParam);
+        ProductParam productParam = productService.createProduct(requestProductCreate, memberParam, postKeywordParam);
 
         return "redirect:/product/detail/" + productParam.getId();
     }

@@ -1,6 +1,6 @@
 package likelion.finalproject.market.product.controller;
 
-import likelion.finalproject.market.product.application.ProductFindService;
+import likelion.finalproject.market.product.application.ProductService;
 import likelion.finalproject.market.product.dto.param.ProductParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ProductFindController {
 
-    private final ProductFindService productFindService;
+    private final ProductService productService;
 
     @GetMapping("list")
     public String list() {
@@ -26,7 +26,7 @@ public class ProductFindController {
             @PathVariable("id") long id
             , Model model
     ) {
-        ProductParam productParam = productFindService.findOne(id);
+        ProductParam productParam = productService.findOne(id);
         model.addAttribute("product", productParam);
 
         return "/product/detail";

@@ -1,9 +1,7 @@
 package likelion.finalproject.market.product.controller;
 
-import likelion.finalproject.market.product.application.ProductFindService;
-import likelion.finalproject.market.product.application.ProductUpdateService;
+import likelion.finalproject.market.product.application.ProductService;
 import likelion.finalproject.market.product.dto.param.ProductParam;
-import likelion.finalproject.market.product.dto.request.RequestProductCreate;
 import likelion.finalproject.market.product.dto.request.RequestProductModify;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,15 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ProductUpdateController {
 
-    private final ProductFindService productFindService;
-    private final ProductUpdateService productUpdateService;
+    private final ProductService productService;
 
     @GetMapping("{id}/modify")
     public String modify(
             @PathVariable("id") long id
             , Model model
     ) {
-        ProductParam productParam = productFindService.findOne(id);
+        ProductParam productParam = productService.findOne(id);
         RequestProductModify requestProductModify = RequestProductModify.builder()
                 .id(productParam.getId())
                 .subject(productParam.getSubject())
@@ -45,7 +42,7 @@ public class ProductUpdateController {
             @PathVariable("id") long id
             , @ModelAttribute("requestProductModify") RequestProductModify requestProductModify
     ) {
-        ProductParam productParam = productUpdateService.updateProduct(requestProductModify);
+        ProductParam productParam = productService.updateProduct(requestProductModify);
         return "redirect:/product/detail/" + productParam.getId();
     }
 }

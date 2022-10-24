@@ -6,14 +6,18 @@ import likelion.finalproject.market.product.converter.ProductConverter;
 import likelion.finalproject.market.product.domain.Product;
 import likelion.finalproject.market.product.dto.param.ProductParam;
 import likelion.finalproject.market.product.dto.request.RequestProductCreate;
+import likelion.finalproject.market.product.dto.request.RequestProductModify;
 import likelion.finalproject.market.product.repository.ProductRepository;
 import likelion.finalproject.util.UtilComponent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
 @Service
-public class ProductCreateService {
+public class ProductService {
 
     private final ProductConverter productConverter;
     private final ProductRepository productRepository;
@@ -35,5 +39,25 @@ public class ProductCreateService {
         );
 
         return productConverter.getProductParam(product);
+    }
+
+    public ProductParam findOne(long id) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new NoSuchElementException("해당하는 제품이 없습니다"));
+        return productConverter.getProductParam(product);
+    }
+
+    @Transactional
+    public ProductParam updateProduct(RequestProductModify requestProductModify) {
+        Product product = productRepository.findById(requestProductModify.getId()).orElseThrow(() -> new NoSuchElementException("해당하는 상품이 없습니다"));
+
+        product.updateSubject(requestProductModify.getSubject());
+        product.updatePrice(requestProductModify.getPrice());
+
+        return productConverter.getProductParam(product);
+    }
+
+    @Transactional
+    public void deleteProduct(long id) {
+        productRepository.deleteById(id);
     }
 }

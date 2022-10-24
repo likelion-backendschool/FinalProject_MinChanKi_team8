@@ -1,29 +1,15 @@
-## Title: [1Week] 민찬기
+## Title: [2Week] 민찬기
 
 ### 미션 요구사항 분석 & 체크리스트
 
 ---
 
-[체크리스트 Issue화](https://github.com/likelion-backendschool/FinalProject_MinChanKi_team8/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
+#### 상품
+<img width="622" alt="image" src="https://user-images.githubusercontent.com/92210823/197576594-a4e93a32-f373-45ad-8950-2aa44ac3296d.png">
 
-![image](https://user-images.githubusercontent.com/92210823/196600285-b569c15d-8761-4c4a-94d4-8ad86569b86b.png)
+#### 장바구니
+<img width="622" alt="image" src="https://user-images.githubusercontent.com/92210823/197576678-311bc678-dd61-4f64-8127-30d90eb15571.png">
 
-#### 회원
-  ✅ 회원가입 (중복검사)
-  
-  ✅ 로그인 & 로그아웃 (Security)
-  
-  ✅ 회원정보수정 
-  
-  (유저 구현 시 nickname에 따른 권한 설정 주의)
-  
-  ✅ 아이디 & 비밀번호 찾기
-  
-#### 글
-
-  ✅ CRUD
-  
-  ✅ HashTag (N:M 맵핑)
 
 
 ### 2주차 미션 요약
@@ -34,7 +20,11 @@
 
 #### 기본
 - 관심사 중심의 분리를 유지하려 노력
-- 
+- issue를 꼼꼼하게 작성하려 노력
+  - mapping url
+  - 무엇이 어디에 구현되어야 하는지
+  - 구현될 때 신경쓸 부분이 있다면 무엇인지
+  - 중복 검사 등을 해야하는 지
     
 **[특이사항]**
 

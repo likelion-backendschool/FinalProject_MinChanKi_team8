@@ -46,3 +46,4 @@
     - Querydsl
     - ExceptionHandler -> Errorpage -> message를 객체로 던져줘서 처리할 수 있도록
     - test
+    - CreateDate, UpdateDate 중복 제거를 위한 BaseEntity 생성

@@ -1,4 +1,4 @@
-package likelion.finalproject.market.member.api;
+package likelion.finalproject.market.member.controller;
 
 import likelion.finalproject.market.member.application.MemberFindService;
 import likelion.finalproject.market.member.dto.request.RequestFindPassword;
@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RequiredArgsConstructor
 @Controller
-public class MemberFindApi {
+public class MemberFindController {
 
     private final MemberFindService memberFindService;
 

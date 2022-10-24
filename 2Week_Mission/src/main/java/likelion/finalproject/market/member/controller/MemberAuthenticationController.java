@@ -1,4 +1,4 @@
-package likelion.finalproject.market.member.api;
+package likelion.finalproject.market.member.controller;
 
 import likelion.finalproject.market.member.dto.request.RequestAuthentication;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @RequiredArgsConstructor
 @Controller
-public class MemberAuthenticationApi {
+public class MemberAuthenticationController {
 
     @GetMapping("/member/login")
     public String login(Model model) {

@@ -1,4 +1,4 @@
-package likelion.finalproject.market.post.api;
+package likelion.finalproject.market.post.controller;
 
 import likelion.finalproject.market.post.application.PostHashTagService;
 import likelion.finalproject.market.post.application.PostService;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-public class PostFindApi {
+public class PostFindController {
 
     private final PostService postService;
     private final PostHashTagService postHashTagService;

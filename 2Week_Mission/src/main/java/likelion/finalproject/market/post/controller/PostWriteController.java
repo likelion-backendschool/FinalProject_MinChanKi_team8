@@ -1,4 +1,4 @@
-package likelion.finalproject.market.post.api;
+package likelion.finalproject.market.post.controller;
 
 import likelion.finalproject.market.member.application.MemberComponent;
 import likelion.finalproject.market.member.dto.param.MemberParam;
@@ -21,7 +21,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-public class PostWriteApi {
+public class PostWriteController {
 
     private final MemberComponent memberComponent;
     private final PostKeywordService postKeywordService;

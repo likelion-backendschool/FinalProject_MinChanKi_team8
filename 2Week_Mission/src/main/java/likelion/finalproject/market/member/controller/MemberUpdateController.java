@@ -1,4 +1,4 @@
-package likelion.finalproject.market.member.api;
+package likelion.finalproject.market.member.controller;
 
 import likelion.finalproject.market.member.application.MemberModifyService;
 import likelion.finalproject.market.member.dto.request.RequestModify;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @RequiredArgsConstructor
 @Controller
-public class MemberUpdateApi {
+public class MemberUpdateController {
 
     private final MemberModifyService memberModifyService;
 

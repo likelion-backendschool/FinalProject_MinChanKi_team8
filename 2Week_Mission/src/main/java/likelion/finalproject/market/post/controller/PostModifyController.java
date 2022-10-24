@@ -1,4 +1,4 @@
-package likelion.finalproject.market.post.api;
+package likelion.finalproject.market.post.controller;
 
 import likelion.finalproject.market.post.application.PostHashTagService;
 import likelion.finalproject.market.post.application.PostKeywordService;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-public class PostModifyApi {
+public class PostModifyController {
 
     private final PostKeywordService postKeywordService;
     private final PostHashTagService postHashTagService;

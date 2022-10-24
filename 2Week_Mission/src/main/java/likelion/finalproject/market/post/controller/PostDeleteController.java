@@ -1,4 +1,4 @@
-package likelion.finalproject.market.post.api;
+package likelion.finalproject.market.post.controller;
 
 import likelion.finalproject.market.post.application.PostService;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RequiredArgsConstructor
 @Controller
-public class PostDeleteApi {
+public class PostDeleteController {
 
     private final PostService postService;
 

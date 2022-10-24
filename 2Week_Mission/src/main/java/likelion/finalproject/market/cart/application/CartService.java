@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -30,7 +31,14 @@ public class CartService {
 
     @Transactional
     public CartParam addProduct(MemberParam memberParam, ProductParam productParam) {
+        Optional<Cart> cartOpt = cartRepository.findByMemberIdAndProductId(memberParam.getId(), productParam.getId());
+
+        if(cartOpt.isPresent()) {
+            throw new IllegalArgumentException("이미 장바구니에 존재합니다");
+        }
+
         LocalDate now = UtilComponent.getDate();
+
         Cart cart = cartRepository.save(Cart.builder()
                 .createDate(now)
                 .updateDate(now)

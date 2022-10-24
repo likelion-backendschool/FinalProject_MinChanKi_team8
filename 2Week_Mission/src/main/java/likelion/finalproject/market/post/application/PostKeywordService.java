@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
 @Service
@@ -46,5 +47,11 @@ public class PostKeywordService {
         }
 
         return postKeywordParams;
+    }
+
+    public PostKeywordParam getPostKeywordParam(String keyword) {
+        PostKeyword postKeyword = postKeywordRepository.findByContent(keyword).orElseThrow(() -> new NoSuchElementException("존재하지 않는 키워드입니다"));
+
+        return postKeywordUtil.getPostKeywordParam(postKeyword);
     }
 }

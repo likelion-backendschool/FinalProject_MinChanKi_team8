@@ -1,0 +1,45 @@
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>메인 페이지</title>
+</head>
+<body>
+<h1>메인 페이지</h1>
+<h3 sec:authorize="isAuthenticated()">반갑습니다. <span sec:authentication="name"></span>님!</h3>
+<hr>
+<a sec:authorize="isAnonymous()" th:href="@{/member/login}">로그인</a>
+<a sec:authorize="isAuthenticated()" th:href="@{/member/logout}">로그아웃</a>
+<a sec:authorize="isAnonymous()" th:href="@{/member/join}">회원가입</a>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성날짜</th>
+                <th>수정날짜</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${posts.empty}">
+            <td>게시물 없음</td>
+        </tr>
+        <tr th:each="post, index : ${posts}">
+                <td th:text="${index.count}"></td>
+                <td>
+                    <a th:href="@{'/post/' + ${post.id}}" th:text="${post.subject}"></a>
+                </td>
+                <td th:text="${post.member.username}"></td>
+                <td th:text="${post.createDate}"></td>
+                <td  th:text="${post.updateDate}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a href="/post/write">글쓰기</a>
+</div>
+</body>
+</html>

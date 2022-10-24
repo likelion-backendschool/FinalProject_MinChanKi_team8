@@ -1,0 +1,57 @@
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 상세</title>
+    <!-- Toast UI Editor -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+</head>
+<body>
+<div>
+    <div>
+        <h2>제목</h2>
+        <span th:text="${post.subject}"></span>
+    </div>
+    <div>
+        <h2>작성자</h2>
+        <span th:text="${post.member.username}"></span>
+    </div>
+    <div>
+        <h2>태그</h2>
+        <span th:text="${keywords}"></span>
+    </div>
+    <div>
+        <h2>내용</h2>
+        <div id="content"></div>
+    </div>
+    <div>
+        <h2>작성시간</h2>
+        <span th:text="${post.createDate}"></span>
+    </div>
+    <div>
+        <h2>수정시간</h2>
+        <span th:text="${post.updateDate}"></span>
+    </div>
+</div>
+<div>
+    <a th:href="@{'/post/' + ${post.id}} + '/modify'">수정하기</a>
+    <input type="button" value="삭제하기" onclick="removeCheck()">
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/ /*]]>*/
+    window.onload = function() {
+        let content = [[${post.contentHtml}]];
+        document.querySelector('#content').innerHTML = content.toString();
+    }
+
+    function removeCheck() {
+        if (window.confirm("정말 삭제하시겠습니까??") == true){    //확인
+            window.location = '/';
+        }else{   //취소
+            return false;
+        }
+    }
+    /*]]>*/
+</script>
+</body>
+</html>

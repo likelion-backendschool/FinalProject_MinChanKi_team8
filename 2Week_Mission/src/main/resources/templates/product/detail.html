@@ -34,5 +34,8 @@
 <a href="/product/list">목록으로</a>
 <a th:href="@{/product/} + ${product.id} + @{/modify}">수정하기</a>
 <a th:href="@{/product/} + ${product.id} + @{/delete}">삭제하기</a>
+<form method="POST" th:action="@{/cart/add/} + ${product.id}">
+    <button type="submit">장바구니에 담기</button>
+</form>
 </body>
 </html>

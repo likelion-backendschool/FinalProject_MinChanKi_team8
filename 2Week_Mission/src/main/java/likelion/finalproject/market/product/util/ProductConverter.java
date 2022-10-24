@@ -1,4 +1,4 @@
-package likelion.finalproject.market.product.converter;
+package likelion.finalproject.market.product.util;
 
 import likelion.finalproject.market.product.domain.Product;
 import likelion.finalproject.market.product.dto.param.ProductParam;

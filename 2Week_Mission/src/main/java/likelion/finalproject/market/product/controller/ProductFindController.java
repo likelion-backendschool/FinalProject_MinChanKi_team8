@@ -17,7 +17,10 @@ public class ProductFindController {
     private final ProductService productService;
 
     @GetMapping("list")
-    public String list() {
+    public String list(
+            Model model
+    ) {
+        model.addAttribute("products", productService.findAll());
         return "/product/list";
     }
 

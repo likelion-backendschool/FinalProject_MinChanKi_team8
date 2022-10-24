@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
@@ -44,6 +45,11 @@ public class ProductService {
     public ProductParam findOne(long id) {
         Product product = productRepository.findById(id).orElseThrow(() -> new NoSuchElementException("해당하는 제품이 없습니다"));
         return productConverter.getProductParam(product);
+    }
+
+    public List<ProductParam> findAll() {
+        List<Product> products = productRepository.findAll();
+        return productConverter.getProductParams(products);
     }
 
     @Transactional

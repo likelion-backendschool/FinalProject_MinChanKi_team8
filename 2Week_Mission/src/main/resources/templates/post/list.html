@@ -23,7 +23,10 @@
         </tr>
         <tr th:each="post, index : ${posts}">
             <th th:text="${index.count}"></th>
-            <th th:text="${post.subject}"></th>
+            <th>
+                <a th:href="@{/post/} + ${post.id}" th:text="${post.subject}" />
+            </th>
+
             <th th:text="${post.member.username}"></th>
             <th th:text="${post.createDate}"></th>
             <th  th:text="${post.updateDate}"></th>

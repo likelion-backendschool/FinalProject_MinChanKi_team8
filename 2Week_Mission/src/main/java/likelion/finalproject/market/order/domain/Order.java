@@ -51,4 +51,8 @@ public class Order extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    public void cancel() {
+        this.isCanceled = true;
+    }
 }

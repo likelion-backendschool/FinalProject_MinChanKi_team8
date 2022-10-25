@@ -39,4 +39,10 @@ public class OrderService {
 
         return orderConverter.getOrderParam(order);
     }
+
+    @Transactional
+    public void cancelOrder(long id) {
+        Order order = orderRepository.findById(id).orElseThrow(() -> new NoSuchElementException("해당하는 주문이 없습니다"));
+        order.cancel();
+    }
 }

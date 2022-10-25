@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.beans.Transient;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -72,5 +71,13 @@ public class OrderController {
         List<OrderItemParam> orderItemParams = orderItemService.createOrderItem(orderParam, cart);
 
         return "redirect:/order/detail/" + orderParam.getId();
+    }
+
+    @PostMapping("{id}/cancel")
+    public String cancel(
+            @PathVariable("id") long id
+    ) {
+        orderService.cancelOrder(id);
+        return "redirect:/product/list";
     }
 }

@@ -1,9 +1,12 @@
 package likelion.finalproject.market.member.domain;
 
+import likelion.finalproject.global.domain.BaseTimeEntity;
 import likelion.finalproject.market.post.domain.Post;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,11 +20,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
-@NoArgsConstructor
 @Getter
-//@Table(name="MEMBERS")
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 @Entity
-public class Member {
+public class Member extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,21 +45,14 @@ public class Member {
     private String password;
 
     @Column
+    private int cash = 0;
+
+    @Column
     @Enumerated(EnumType.STRING)
     private Auth auth;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Post> posts;
-
-    @Builder
-    public Member(long id, String username, String email, String password, String nickname, Auth auth) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.nickname = nickname;
-        this.password = password;
-        this.auth = auth;
-    }
 
     public void updateEmail(String email) {
         this.email = email;
@@ -71,5 +68,13 @@ public class Member {
 
     public void setWriter() {
         this.auth = Auth.WRITER;
+    }
+
+    public void addCash(int money) {
+        this.cash += money;
+    }
+
+    public void useCash(int money) {
+        this.cash -= money;
     }
 }

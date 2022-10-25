@@ -86,7 +86,7 @@ public class OrderController {
         // 주문 품목 테이블 생성
         List<OrderItemParam> orderItemParams = orderItemService.createOrderItem(orderParam, cart);
 
-        return "redirect:/order/detail/" + orderParam.getId();
+        return "redirect:/order/" + orderParam.getId();
     }
 
     @PostMapping("{id}/cancel")
@@ -94,6 +94,6 @@ public class OrderController {
             @PathVariable("id") long id
     ) {
         orderService.cancelOrder(id);
-        return "redirect:/product/list";
+        return "redirect:/order/list";
     }
 }

@@ -21,13 +21,6 @@ public class OrderItemService {
     private final OrderItemRepository orderItemRepository;
     private final ModelMapper modelMapper;
 
-    public List<OrderItemParam> findItems(long orderId) {
-        List<OrderItem> orderItems = orderItemRepository.findByOrderId(orderId);
-        return orderItems.stream()
-                .map(orderItem -> modelMapper.map(orderItem, OrderItemParam.class))
-                .toList();
-    }
-
     @Transactional
     public List<OrderItemParam> createOrderItem(OrderParam orderParam, List<CartProductParam> cart) {
         List<OrderItem> orderItems = cart.stream()
@@ -48,6 +41,24 @@ public class OrderItemService {
         return orderItems.stream().map(
                         orderItem -> modelMapper.map(orderItem, OrderItemParam.class))
                 .toList();
+    }
+
+    public List<OrderItemParam> findItems(long orderId) {
+        List<OrderItem> orderItems = orderItemRepository.findByOrderId(orderId);
+        return orderItems.stream()
+                .map(orderItem -> modelMapper.map(orderItem, OrderItemParam.class))
+                .toList();
+    }
+
+    public int findTotalPrice(long orderId) {
+        List<OrderItem> orderItems = orderItemRepository.findByOrderId(orderId);
+        return orderItems.stream()
+                .mapToInt(orderItemParam -> {
+                    if (orderItemParam.getEventPrice() > 0)
+                        return orderItemParam.getEventPrice();
+                    return orderItemParam.getCost();
+                })
+                .sum();
     }
 
     private int getPrimeCost(int cost) {

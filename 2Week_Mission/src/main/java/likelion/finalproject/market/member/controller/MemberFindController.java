@@ -29,7 +29,7 @@ public class MemberFindController {
             @ModelAttribute("requestFindUsername") RequestFindUsername requestFindUsername
             , RedirectAttributes re
     ) {
-        MemberParam memberParam = memberFindService.findUsername(requestFindUsername);
+        MemberParam memberParam = memberFindService.findMember(requestFindUsername);
        re.addFlashAttribute("responseMember", memberParam);
 
         return "redirect:/member/findUsernameResult";

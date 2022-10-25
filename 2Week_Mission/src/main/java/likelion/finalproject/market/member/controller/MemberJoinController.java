@@ -26,6 +26,6 @@ public class MemberJoinController {
             @ModelAttribute("requestJoin") RequestJoin requestJoin
     ) {
         MemberParam memberParam = memberJoinService.register(requestJoin);
-        return "redirect:/";
+        return "redirect:/member/login";
     }
 }

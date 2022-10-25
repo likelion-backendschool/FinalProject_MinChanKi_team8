@@ -33,19 +33,20 @@
         </table>
     </div>
 </div>
+<div th:text="${order.isOrdered} ? '주문완료' : '주문X'"></div>
 <th:block th:if="${!order.isOrdered}">
     <form method="POST" th:action="@{/order/} + ${orderItems.orderId} + @{/pay}">
         <button type="submit">결제</button>
     </form>
 </th:block>
 
-<th:block th:if="${!order.isRefunded}">
+<th:block th:if="${order.isPaid && !order.isRefunded}">
     <form method="POST" th:action="@{/order/} + ${orderItems.orderId} + @{/refund}">
         <button type="submit">환불</button>
     </form>
 </th:block>
 
-<th:block th:if="${!order.isRefunded}">
+<th:block th:if="${order.isOrdered && !order.isRefunded}">
     <form method="POST" th:action="@{/order/} + ${orderItems.orderId} + @{/cancel}">
         <button type="submit">취소</button>
     </form>

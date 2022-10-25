@@ -31,12 +31,12 @@ public class OrderController {
     private final CartService cartService;
     private final MemberComponent memberComponent;
 
-    @GetMapping("detail/{id}")
+    @GetMapping("{id}")
     public String detail(
             @PathVariable("id") long id
             , Model model
     ) {
-        List<OrderItemParam> orderItemParams = orderItemService.getOrderItems(id);
+        List<OrderItemParam> orderItemParams = orderItemService.findItems(id);
 
         OrderItemsResponse orderItemsResponse = OrderItemsResponse.builder()
                 .orderId(id)
@@ -54,6 +54,20 @@ public class OrderController {
         model.addAttribute("orderItems", orderItemsResponse);
 
         return "/order/detail";
+    }
+
+    @GetMapping("list")
+    public String list(
+            Model model
+    ) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        MemberParam memberParam = memberComponent.findMember(authentication.getName());
+
+        List<OrderParam> orderParams = orderService.findMyOrders(memberParam);
+
+        model.addAttribute("orders", orderParams);
+
+        return "/order/list";
     }
 
     @PostMapping("create")

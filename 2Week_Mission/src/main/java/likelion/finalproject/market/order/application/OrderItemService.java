@@ -1,7 +1,6 @@
 package likelion.finalproject.market.order.application;
 
 import likelion.finalproject.market.cart.dto.param.CartProductParam;
-import likelion.finalproject.market.order.domain.Order;
 import likelion.finalproject.market.order.domain.OrderItem;
 import likelion.finalproject.market.order.dto.param.OrderItemParam;
 import likelion.finalproject.market.order.dto.param.OrderParam;
@@ -22,7 +21,7 @@ public class OrderItemService {
     private final OrderItemRepository orderItemRepository;
     private final ModelMapper modelMapper;
 
-    public List<OrderItemParam> getOrderItems(long orderId) {
+    public List<OrderItemParam> findItems(long orderId) {
         List<OrderItem> orderItems = orderItemRepository.findByOrderId(orderId);
         return orderItems.stream()
                 .map(orderItem -> modelMapper.map(orderItem, OrderItemParam.class))

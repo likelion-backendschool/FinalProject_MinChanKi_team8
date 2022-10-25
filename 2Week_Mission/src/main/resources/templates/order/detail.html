@@ -39,20 +39,16 @@
     </form>
 </th:block>
 
-<th:block th:if="${!order.isOrdered}">
-    <form method="POST" th:action="@{/order/} + ${orderItems.orderId} + @{/pay}">
-        <button type="submit">결제</button>
+<th:block th:if="${!order.isRefunded}">
+    <form method="POST" th:action="@{/order/} + ${orderItems.orderId} + @{/refund}">
+        <button type="submit">환불</button>
     </form>
 </th:block>
 
 <th:block th:if="${!order.isRefunded}">
-    <form method="POST" th:action="@{/order/} + ${orderItems.orderId} + @{/refund}">
-        <button type="submit">ghksqnf</button>
+    <form method="POST" th:action="@{/order/} + ${orderItems.orderId} + @{/cancel}">
+        <button type="submit">취소</button>
     </form>
 </th:block>
-
-<form method="POST" th:action="@{/order/} + ${orderItems.orderId} + @{/cancel}">
-    <button type="submit">취소</button>
-</form>
 </body>
 </html>

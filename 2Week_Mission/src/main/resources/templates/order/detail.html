@@ -1,0 +1,43 @@
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>주문 상세</title>
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+</head>
+<body>
+<div>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>상품</th>
+                <th>작성자</th>
+                <th>판매가</th>
+                <th>이벤트가격</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="orderItem, index : ${orderItems.orderItemParams}">
+                <th th:text="${index.count}"></th>
+                <th th:text="${orderItem.product.subject}"></th>
+                <th th:text="${orderItem.product.member.username}"></th>
+                <th th:text="${orderItem.cost}"></th>
+                <th th:if="${orderItem.eventPrice > 0}">
+                    <span th:text="${orderItem.eventPrice}"></span>
+                </th>
+                <th th:unless="${orderItem.eventPrice > 0}">X</th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<form method="POST" th:action="@{/order/} + ${orderItems.orderId} + @{/pay}">
+    <button type="submit">결제</button>
+</form>
+<form method="POST" th:action="@{/order/} + ${orderItems.orderId} + @{/cancel}">
+    <button type="submit">취소</button>
+</form>
+</body>
+</html>

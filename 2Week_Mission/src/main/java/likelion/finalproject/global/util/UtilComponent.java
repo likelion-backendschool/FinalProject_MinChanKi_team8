@@ -1,4 +1,4 @@
-package likelion.finalproject.util;
+package likelion.finalproject.global.util;
 
 import org.springframework.stereotype.Component;
 

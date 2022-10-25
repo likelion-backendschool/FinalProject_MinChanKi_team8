@@ -4,7 +4,7 @@ import likelion.finalproject.market.post.domain.PostKeyword;
 import likelion.finalproject.market.post.dto.param.PostKeywordParam;
 import likelion.finalproject.market.post.repository.PostKeywordRepository;
 import likelion.finalproject.market.post.util.PostKeywordUtil;
-import likelion.finalproject.util.UtilComponent;
+import likelion.finalproject.global.util.UtilComponent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

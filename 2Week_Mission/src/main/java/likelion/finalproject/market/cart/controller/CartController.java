@@ -1,7 +1,7 @@
 package likelion.finalproject.market.cart.controller;
 
 import likelion.finalproject.market.cart.application.CartService;
-import likelion.finalproject.market.cart.dto.param.CartParam;
+import likelion.finalproject.market.cart.dto.param.CartProductParam;
 import likelion.finalproject.market.member.application.MemberComponent;
 import likelion.finalproject.market.member.dto.param.MemberParam;
 import likelion.finalproject.market.product.application.ProductService;
@@ -34,9 +34,9 @@ public class CartController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         MemberParam memberParam = memberComponent.findMember(authentication.getName());
 
-        List<CartParam> cartParams = cartService.getCartList(memberParam.getId());
+        List<CartProductParam> cartProductParams = cartService.getCartList(memberParam.getId());
 
-        model.addAttribute("carts", cartParams);
+        model.addAttribute("cartProducts", cartProductParams);
 
         return "/cart/list";
     }

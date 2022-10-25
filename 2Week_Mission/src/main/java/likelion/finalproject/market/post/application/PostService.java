@@ -6,7 +6,7 @@ import likelion.finalproject.market.post.dto.param.PostParam;
 import likelion.finalproject.market.post.dto.request.RequestPost;
 import likelion.finalproject.market.post.repository.PostRepository;
 import likelion.finalproject.market.post.util.PostUtil;
-import likelion.finalproject.util.UtilComponent;
+import likelion.finalproject.global.util.UtilComponent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

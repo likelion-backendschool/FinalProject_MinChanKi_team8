@@ -4,7 +4,7 @@
     <title>장바구니 목록</title>
 </head>
 <body>
-<h1>게시글 목록</h1>
+<h1>장바구니 목록</h1>
 
 <div>
     <table>
@@ -20,24 +20,27 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:if="${carts.empty}">
+        <tr th:if="${cartProducts.empty}">
             <td>게시물 없음</td>
         </tr>
-        <tr th:each="cart, index : ${carts}">
+        <tr th:each="cartProduct, index : ${cartProducts}">
             <th th:text="${index.count}"></th>
-            <th th:text="${cart.productParam.subject}"></th>
-            <th th:text="${cart.memberParam.username}"></th>
-            <th th:text="${cart.productParam.price}"></th>
-            <th th:text="${cart.createDate}"></th>
-            <th th:text="${cart.updateDate}"></th>
+            <th th:text="${cartProduct.product.subject}"></th>
+            <th th:text="${cartProduct.member.username}"></th>
+            <th th:text="${cartProduct.product.price}"></th>
+            <th th:text="${cartProduct.createDate}"></th>
+            <th th:text="${cartProduct.updateDate}"></th>
             <th>
-                <form method="POST" th:action="@{/cart/remove/} + ${cart.id}">
+                <form method="POST" th:action="@{/cart/remove/} + ${cartProduct.id}">
                     <button type="submit">삭제</button>
                 </form>
             </th>
         </tr>
         </tbody>
     </table>
+    <form method="POST" th:action="@{/order/create}">
+        <button type="submit">주문하기</button>
+    </form>
 </div>
 </body>
 </html>

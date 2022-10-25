@@ -8,7 +8,7 @@ import likelion.finalproject.market.product.dto.param.ProductParam;
 import likelion.finalproject.market.product.dto.request.RequestProductCreate;
 import likelion.finalproject.market.product.dto.request.RequestProductModify;
 import likelion.finalproject.market.product.repository.ProductRepository;
-import likelion.finalproject.util.UtilComponent;
+import likelion.finalproject.global.util.UtilComponent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

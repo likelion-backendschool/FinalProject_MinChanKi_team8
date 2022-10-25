@@ -36,6 +36,7 @@ public class OrderController {
             @PathVariable("id") long id
             , Model model
     ) {
+        OrderParam orderParam = orderService.findOrder(id);
         List<OrderItemParam> orderItemParams = orderItemService.findItems(id);
 
         OrderItemsResponse orderItemsResponse = OrderItemsResponse.builder()
@@ -51,6 +52,7 @@ public class OrderController {
                 .totalQuantity(orderItemParams.size())
                 .build();
 
+        model.addAttribute("order", orderParam);
         model.addAttribute("orderItems", orderItemsResponse);
 
         return "/order/detail";

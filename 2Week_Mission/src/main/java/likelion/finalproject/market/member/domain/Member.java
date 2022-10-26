@@ -45,7 +45,7 @@ public class Member extends BaseTimeEntity {
     private String password;
 
     @Column
-    private int cash = 0;
+    private long cash = 0;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -70,11 +70,11 @@ public class Member extends BaseTimeEntity {
         this.auth = Auth.WRITER;
     }
 
-    public void addCash(int money) {
+    public void addCash(long money) {
         this.cash += money;
     }
 
-    public void useCash(int money) {
+    public void useCash(long money) {
         this.cash -= money;
     }
 }

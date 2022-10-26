@@ -29,7 +29,7 @@ public class CashLog extends BaseTimeEntity {
     private long id;
 
     @Column
-    private int changePrice;
+    private long changePrice;
 
     @Column
     @Enumerated(EnumType.STRING)

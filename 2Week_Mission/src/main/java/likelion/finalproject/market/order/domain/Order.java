@@ -48,7 +48,7 @@ public class Order extends BaseTimeEntity {
     @Column
     private boolean isRefunded = false;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
 

@@ -81,10 +81,8 @@ public class OrderController {
 
         List<CartProductParam> cart = cartService.getCartList(memberParam.getId());
 
-        // 주문 테이블 생성
         OrderParam orderParam = orderService.createOrder(memberParam);
-        // 주문 품목 테이블 생성
-        List<OrderItemParam> orderItemParams = orderItemService.createOrderItem(orderParam, cart);
+        orderItemService.createOrderItem(orderParam, cart);
 
         return "redirect:/order/" + orderParam.getId();
     }

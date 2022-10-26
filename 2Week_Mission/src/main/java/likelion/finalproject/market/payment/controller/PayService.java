@@ -15,7 +15,7 @@ public class PayService {
     private final CashLogRepository cashLogRepository;
 
     @Transactional
-    public void log(int money, Event event, MemberParam memberParam) {
+    public void log(long money, Event event, MemberParam memberParam) {
         cashLogRepository.save(
                 CashLog.builder()
                         .changePrice(money)

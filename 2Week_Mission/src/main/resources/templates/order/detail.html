@@ -3,8 +3,25 @@
     <meta charset="UTF-8">
     <title>주문 상세</title>
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    <script src="https://js.tosspayments.com/v1/payment"></script>
 </head>
 <body>
+<script>
+    var clientKey = 'test_ck_Z0RnYX2w532nlkPbn6g3NeyqApQE'
+    var tossPayments = TossPayments(clientKey) // 클라이언트 키로 초기화하기
+
+    function pay(id, money) {
+        tossPayments.requestPayment('CARD', { // 결제 수단 파라미터
+            // 결제 정보 파라미터
+            amount: money,
+            orderId: 'order' + id,
+            orderName: '충전',
+            customerName: '[[${order.member.username}]]',
+            successUrl: 'http://localhost:8080/order/' + id + '/charge/success',
+            failUrl: 'http://localhost:8080/order/' + id + '/charge/fail',
+        })
+    }
+</script>
 <div>
     <div>
         <table>
@@ -33,23 +50,50 @@
         </table>
     </div>
 </div>
-<div th:text="${order.isOrdered} ? '주문완료' : '주문X'"></div>
-<th:block th:if="${!order.isOrdered}">
+<div th:text="${order.isOrdered} ? '주문완료' : '주문 미완료'"></div>
+<div>
+    <div>
+        <span>현재 잔고</span>
+        <span th:text="${order.member.cash}"></span>
+    </div>
+    <div>
+        <span>결제 금액</span>
+        <span th:text="${orderItems.totalPrice}"></span>
+    </div>
+</div>
+<th:block th:if="${!order.isOrdered && !order.isCanceled && !order.isRefunded}">
     <form method="POST" th:action="@{/order/} + ${orderItems.orderId} + @{/pay}">
         <button type="submit">결제</button>
     </form>
 </th:block>
 
-<th:block th:if="${order.isPaid && !order.isRefunded}">
+<th:block th:if="${orderItems.totalPrice > order.member.cash}">
+    <div>
+        <span>충전</span>
+    </div>
+    <button type="button"
+            th:orderId="${orderItems.orderId}"
+            th:onclick="pay(this.getAttribute('orderId'), 1000)">1000</button>
+    <button type="button"
+            th:orderId="${orderItems.orderId}"
+            th:onclick="pay(this.getAttribute('orderId'), 5000)">5000</button>
+    <button type="button"
+            th:orderId="${orderItems.orderId}"
+            th:onclick="pay(this.getAttribute('orderId'), 10000)">10000</button>
+</th:block>
+
+<th:block th:if="${order.isPaid && !order.isCanceled && !order.isRefunded}">
     <form method="POST" th:action="@{/order/} + ${orderItems.orderId} + @{/refund}">
         <button type="submit">환불</button>
     </form>
 </th:block>
 
-<th:block th:if="${order.isOrdered && !order.isRefunded}">
+<th:block th:if="${order.isOrdered && !order.isPaid && !order.isRefunded}">
     <form method="POST" th:action="@{/order/} + ${orderItems.orderId} + @{/cancel}">
         <button type="submit">취소</button>
     </form>
 </th:block>
+
+
 </body>
 </html>

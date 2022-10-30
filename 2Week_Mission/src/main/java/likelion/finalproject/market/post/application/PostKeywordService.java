@@ -4,7 +4,7 @@ import likelion.finalproject.market.post.domain.PostKeyword;
 import likelion.finalproject.market.post.dto.param.PostKeywordParam;
 import likelion.finalproject.market.post.repository.PostKeywordRepository;
 import likelion.finalproject.market.post.util.PostKeywordUtil;
-import likelion.finalproject.util.UtilComponent;
+import likelion.finalproject.global.util.UtilComponent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
 @Service
@@ -46,5 +47,11 @@ public class PostKeywordService {
         }
 
         return postKeywordParams;
+    }
+
+    public PostKeywordParam getPostKeywordParam(String keyword) {
+        PostKeyword postKeyword = postKeywordRepository.findByContent(keyword).orElseThrow(() -> new NoSuchElementException("존재하지 않는 키워드입니다"));
+
+        return postKeywordUtil.getPostKeywordParam(postKeyword);
     }
 }

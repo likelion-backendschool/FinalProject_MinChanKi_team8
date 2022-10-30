@@ -4,7 +4,7 @@ import likelion.finalproject.market.post.domain.Post;
 import likelion.finalproject.market.post.domain.PostHashTag;
 import likelion.finalproject.market.post.domain.PostKeyword;
 import likelion.finalproject.market.post.dto.param.PostKeywordParam;
-import likelion.finalproject.util.UtilComponent;
+import likelion.finalproject.global.util.UtilComponent;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

@@ -24,7 +24,7 @@ public class MemberFindService {
     private final PasswordEncoder passwordEncoder;
     private final MemberRepository memberRepository;
 
-    public MemberParam findUsername(RequestFindUsername requestFindUsername) {
+    public MemberParam findMember(RequestFindUsername requestFindUsername) {
         Member member = memberRepository.findByEmail(requestFindUsername.getEmail()).orElseThrow(() -> new NoSuchElementException("해당하는 유저가 없습니다"));
 
         return memberUtil.getResponseMember(member);

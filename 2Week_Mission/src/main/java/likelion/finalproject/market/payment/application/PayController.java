@@ -48,13 +48,6 @@ public class PayController {
         return "redirect:/order/" + id;
     }
 
-    public void charge(MemberParam memberParam, int money) {
-        // 페이먼츠 충전
-
-        // 후처리
-
-    }
-
     @GetMapping("/order/{id}/charge/success")
     public String charge(
             @PathVariable("id") long id

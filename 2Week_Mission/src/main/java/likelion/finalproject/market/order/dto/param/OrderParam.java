@@ -1,6 +1,6 @@
 package likelion.finalproject.market.order.dto.param;
 
-import likelion.finalproject.global.dto.BaseParam;
+import likelion.finalproject.global.base.BaseParam;
 import likelion.finalproject.market.member.domain.Member;
 import likelion.finalproject.market.order.domain.Order;
 import lombok.AllArgsConstructor;

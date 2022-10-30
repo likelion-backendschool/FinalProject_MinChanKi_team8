@@ -33,7 +33,7 @@ public class PostHashTag {
     @JoinColumn(name = "post_id")
     private Post post;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "postKeyword_id")
     private PostKeyword postKeyword;
 

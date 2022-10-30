@@ -1,7 +1,6 @@
 package likelion.finalproject.market.cart.dto.param;
 
-import likelion.finalproject.global.dto.BaseParam;
-import likelion.finalproject.market.cart.domain.CartProduct;
+import likelion.finalproject.global.base.BaseParam;
 import likelion.finalproject.market.member.domain.Member;
 import likelion.finalproject.market.product.domain.Product;
 import lombok.AllArgsConstructor;

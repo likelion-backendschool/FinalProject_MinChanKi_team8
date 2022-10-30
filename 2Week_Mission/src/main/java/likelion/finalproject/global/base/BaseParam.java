@@ -1,4 +1,4 @@
-package likelion.finalproject.global.dto;
+package likelion.finalproject.global.base;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

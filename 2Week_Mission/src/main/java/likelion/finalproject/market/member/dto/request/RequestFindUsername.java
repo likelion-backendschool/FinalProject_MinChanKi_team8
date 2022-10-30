@@ -7,4 +7,5 @@ import lombok.Setter;
 @Setter
 public class RequestFindUsername {
     private String email;
+    private String username;
 }

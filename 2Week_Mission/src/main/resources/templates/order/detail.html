@@ -1,4 +1,6 @@
-<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
     <title>주문 상세</title>
@@ -22,6 +24,7 @@
         })
     }
 </script>
+<div layout:fragment="content">
 <div>
     <div>
         <table>
@@ -94,6 +97,6 @@
     </form>
 </th:block>
 
-
+</div>
 </body>
 </html>

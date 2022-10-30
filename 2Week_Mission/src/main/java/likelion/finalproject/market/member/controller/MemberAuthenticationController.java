@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MemberAuthenticationController {
 
     @GetMapping("/member/login")
-    public String login(Model model) {
+    public String login(
+            Model model
+    ) {
         model.addAttribute("requestAuthentication", new RequestAuthentication());
         return "/member/login";
     }

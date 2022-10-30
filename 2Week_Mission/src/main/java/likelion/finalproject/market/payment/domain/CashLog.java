@@ -1,6 +1,6 @@
 package likelion.finalproject.market.payment.domain;
 
-import likelion.finalproject.global.domain.BaseTimeEntity;
+import likelion.finalproject.global.base.BaseTimeEntity;
 import likelion.finalproject.market.member.domain.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

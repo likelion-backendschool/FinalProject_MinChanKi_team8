@@ -1,39 +1,37 @@
-<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>게시글 목록</title>
-</head>
-<body>
-<h1>게시글 목록</h1>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
 
-<div>
-    <a href="/product/create">상품등록</a>
-    <table>
-        <thead>
-        <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>가격</th>
-            <th>작성자</th>
-            <th>작성날짜</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${products.empty}">
-            <td>게시물 없음</td>
-        </tr>
-        <tr th:each="product, index : ${products}">
-            <th th:text="${index.count}"></th>
-            <th th:text="${product.subject}"></th>
-            <th>
-                <a th:href="@{/product/detail/} + ${product.id}" th:text="${product.subject}" />
-            </th>
-            <th th:text="${product.price}"></th>
-            <th th:text="${product.member.username}"></th>
-            <th  th:text="${product.createDate}"></th>
-        </tr>
-        </tbody>
-    </table>
-</div>
-</body>
+<th:block layout:fragment="content">
+    <div>
+        <a href="/product/create">상품등록</a>
+        <table>
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>가격</th>
+                <th>작성자</th>
+                <th>작성날짜</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${products.empty}">
+                <td>게시물 없음</td>
+            </tr>
+            <tr th:each="product, index : ${products}">
+                <th th:text="${index.count}"></th>
+                <th th:text="${product.subject}"></th>
+                <th>
+                    <a th:href="@{/product/detail/} + ${product.id}" th:text="${product.subject}" />
+                </th>
+                <th th:text="${product.price}"></th>
+                <th th:text="${product.member.username}"></th>
+                <th th:text="${product.createDate}"></th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</th:block>
 </html>

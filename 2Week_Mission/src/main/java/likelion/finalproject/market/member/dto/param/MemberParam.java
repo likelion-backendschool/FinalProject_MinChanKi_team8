@@ -1,10 +1,9 @@
 package likelion.finalproject.market.member.dto.param;
 
-import likelion.finalproject.global.dto.BaseParam;
+import likelion.finalproject.global.base.BaseParam;
 import likelion.finalproject.market.member.domain.Auth;
 import likelion.finalproject.market.member.domain.Member;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;

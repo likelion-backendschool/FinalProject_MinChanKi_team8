@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RequiredArgsConstructor
@@ -26,18 +27,15 @@ public class MemberFindController {
 
     @PostMapping("/member/findUsername")
     public String findUsername (
-            @ModelAttribute("requestFindUsername") RequestFindUsername requestFindUsername
-            , RedirectAttributes re
+            RequestFindUsername requestFindUsername
+            , Model model
     ) {
         MemberParam memberParam = memberFindService.findMember(requestFindUsername);
-       re.addFlashAttribute("responseMember", memberParam);
+        requestFindUsername.setUsername(memberParam.getUsername());
 
-        return "redirect:/member/findUsernameResult";
-    }
+        model.addAttribute("requestFindUsername", requestFindUsername);
 
-    @GetMapping("/member/findUsernameResult")
-    public String usernameResult() {
-        return "/member/findUsernameResult";
+        return "/member/findUsername :: #username";
     }
 
     @GetMapping("/member/findPassword")
@@ -53,7 +51,7 @@ public class MemberFindController {
             , RedirectAttributes re
     ) {
         MemberParam memberParam = memberFindService.findMember(requestFindPassword);
-        re.addFlashAttribute("responseMember", memberParam);
+        re.addAttribute("responseMember", memberParam);
 
         return "redirect:/member/findPasswordResult";
     }

@@ -1,11 +1,14 @@
-<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/layout}"
+>
 <head>
-    <meta charset="UTF-8">
     <title>게시물 상세</title>
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
 </head>
 <body>
-<div>
+<div layout:fragment="content">
     <div>
         <h2>제목</h2>
         <span th:text="${product.subject}"></span>

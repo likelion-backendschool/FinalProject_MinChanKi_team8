@@ -1,9 +1,12 @@
-<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
     <title>주문 목록</title>
 </head>
 <body>
+<div layout:fragment="content">
 <h1>주문 목록</h1>
 
 <div>
@@ -34,6 +37,7 @@
         </tr>
         </tbody>
     </table>
+</div>
 </div>
 </body>
 </html>

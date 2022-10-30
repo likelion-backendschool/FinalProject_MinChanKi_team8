@@ -1,6 +1,7 @@
-package likelion.finalproject.global.domain;
+package likelion.finalproject.global.base;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -13,12 +14,15 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDate;
 
+import static lombok.AccessLevel.PROTECTED;
+
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @SuperBuilder
 @MappedSuperclass
+@NoArgsConstructor(access = PROTECTED)
+@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class BaseTimeEntity {
     @CreatedDate
     @Column

@@ -1,53 +1,50 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
 <head>
-    <meta charset="UTF-8">
     <title>글 수정하기</title>
     <!-- Toast UI Editor -->
     <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-    <!-- summernote wysywig -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-    <!-- bootstrap css -->
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
 </head>
-<body>
-<h2>글 수정하기</h2>
-<form th:action="@{/post/} + ${postParam.id} + @{/modify}" method="post" onclick="onSubmitValue()">
-    <div class="mb-3 justify-content-center d-flex flex-row">
-        <label for="title" class="form-label text-center fs-5">제목</label>
-        <input type="text" id="title" class="form-control" th:field="${postParam.subject}">
-    </div>
-    <div class="mb-3 justify-content-center d-flex flex-row">
-        <label for="keywords" class="form-label text-center fs-5">해시태그</label>
-        <input type="text" id="keywords" class="form-control" th:field="${postParam.keywords}">
-    </div>
-    <div>
-        <div id="editor"></div>
-    </div>
-    <input type="hidden" id="content" th:field="${postParam.content}" value="" />
-    <input type="hidden" id="contentHtml" th:field="${postParam.contentHtml}" value="" />
+<th:block layout:fragment="content">
+    <h2>수정하기</h2>
 
-    <input type="submit" value="작성하기" class="btn btn-primary my-2">
-</form>
-<script>
-    /*<![CDATA[*/ /*]]>*/
-    const Editor = toastui.Editor;
+    <form th:action="@{/post/} + ${postParam.id} + @{/modify}" method="post" onclick="onSubmitValue()">
+        <div class="mb-3 justify-content-center d-flex flex-row">
+            <label for="title" class="form-label text-center fs-5">제목</label>
+            <input type="text" id="title" class="form-control" th:field="${postParam.subject}">
+        </div>
+        <div class="mb-3 justify-content-center d-flex flex-row">
+            <label for="keywords" class="form-label text-center fs-5">해시태그</label>
+            <input type="text" id="keywords" class="form-control" th:field="${postParam.keywords}">
+        </div>
+        <div>
+            <div id="editor"></div>
+        </div>
+        <input type="hidden" id="content" th:field="${postParam.content}" value="" />
+        <input type="hidden" id="contentHtml" th:field="${postParam.contentHtml}" value="" />
 
-    const editor = new Editor({
-        el: document.querySelector('#editor'),
-        height: '600px',
-        initialEditType: 'markdown',
-        previewStyle: 'vertical',
-    });
+        <div class="d-flex justify-content-center align-content-center">
+            <input type="submit" value="작성하기" class="btn btn-primary my-2">
+        </div>
+    </form>
 
-    function onSubmitValue() {
-        document.getElementById('content').value = editor.getMarkdown();
-        document.getElementById('contentHtml').value = editor.getHTML();
-    }
-    /*]]>*/
-</script>
-</body>
+    <script>
+        const Editor = toastui.Editor;
+
+        const editor = new Editor({
+            el: document.querySelector('#editor'),
+            height: '600px',
+            initialEditType: 'markdown',
+            previewStyle: 'vertical',
+        });
+
+        function onSubmitValue() {
+            document.getElementById('content').value = editor.getMarkdown();
+            document.getElementById('contentHtml').value = editor.getHTML();
+        }
+    </script>
+</th:block>
 </html>

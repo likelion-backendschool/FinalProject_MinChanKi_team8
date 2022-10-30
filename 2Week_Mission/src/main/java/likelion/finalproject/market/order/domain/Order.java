@@ -1,6 +1,6 @@
 package likelion.finalproject.market.order.domain;
 
-import likelion.finalproject.global.domain.BaseTimeEntity;
+import likelion.finalproject.global.base.BaseTimeEntity;
 import likelion.finalproject.market.member.domain.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,6 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;

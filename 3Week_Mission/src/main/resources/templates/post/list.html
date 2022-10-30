@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+    <title>게시글 목록</title>
+</head>
+
+<th:block layout:fragment="content">
+    <div class="d-flex mt-2 justify-content-between">
+        <div>
+            <h2>게시글</h2>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <button class="btn btn-outline-primary" onclick="location.href='/post/write'">글쓰기</button>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성날짜</th>
+                <th>수정날짜</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${posts.empty}">
+                <td>게시물 없음</td>
+            </tr>
+            <tr th:each="post, index : ${posts}">
+                <th th:text="${index.count}"></th>
+                <th>
+                    <a th:href="@{/post/} + ${post.id}" th:text="${post.subject}" />
+                </th>
+
+                <th th:text="${post.member.username}"></th>
+                <th th:text="${post.createDate}"></th>
+                <th th:text="${post.updateDate}"></th>
+            </tr>
+        </tbody>
+    </table>
+</th:block>
+</html>

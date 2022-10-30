@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/layout}"
+>
+<head>
+    <title>글쓰기</title>
+    <!-- Toast UI Editor -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+</head>
+
+<th:block layout:fragment="content">
+    <form th:action="@{/post/write}" th:object="${requestPost}" method="post" onclick="onSubmitValue()">
+        <div class="row mb-3 w-100">
+            <label for="subject" class="col-sm-2 col-form-label fs-5">제목</label>
+            <div class="col-sm-10">
+                <input type="text" id="subject" class="form-control" th:field="*{subject}">
+            </div>
+        </div>
+
+        <div class="row mb-3 w-100">
+            <label for="keywords" class="col-sm-2 col-form-label fs-5">해시태그</label>
+            <div class="col-sm-10">
+                <input type="text" id="keywords" class="form-control" th:field="*{keywords}">
+            </div>
+        </div>
+
+        <div>
+            <div id="editor"></div>
+        </div>
+
+        <input type="hidden" id="content" th:field="*{content}" value="" />
+        <input type="hidden" id="contentHtml" th:field="*{contentHtml}" value="" />
+
+        <div class="d-flex justify-content-center align-content-center">
+            <input type="submit" value="작성하기" class="btn btn-primary my-2">
+        </div>
+    </form>
+    <script>
+        const Editor = toastui.Editor;
+
+        const editor = new Editor({
+            el: document.querySelector('#editor'),
+            height: '600px',
+            initialEditType: 'markdown',
+            previewStyle: 'vertical'
+        });
+
+        function onSubmitValue() {
+            document.getElementById('content').value = editor.getMarkdown();
+            document.getElementById('contentHtml').value = editor.getHTML();
+        }
+    </script>
+</th:block>
+
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "main",
+  "version": "1.0.0",
+  "devDependencies": {
+    "codemirror": "^6.0.1",
+    "highlight.js": "^11.6.0",
+    "tui-editor": "^1.4.10"
+  }
+}

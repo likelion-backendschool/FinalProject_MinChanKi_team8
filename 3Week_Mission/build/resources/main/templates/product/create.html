@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<head>
+    <title>상품 등록</title>
+</head>
+<body>
+<div layout:fragment="content">
+<h2>상품 등록</h2>
+<form th:action="@{/product/create}" th:object="${requestProductCreate}" method="post" onclick="onSubmitValue()">
+    <div class="mb-3 justify-content-center d-flex flex-row">
+        <label for="subject" class="form-label text-center fs-5">제목</label>
+        <input type="text" id="subject" class="form-control" th:field="*{subject}">
+    </div>
+    <div class="mb-3 justify-content-center d-flex flex-row">
+        <label for="price" class="form-label text-center fs-5">가격</label>
+        <input type="text" id="price" class="form-control" th:field="*{price}">
+    </div>
+    <div class="mb-3 justify-content-center d-flex flex-row">
+        <label for="keyword" class="form-label text-center fs-5">해시태그</label>
+        <input type="text" id="keyword" class="form-control" th:field="*{keyword}">
+    </div>
+
+    <input type="submit" value="작성하기" class="btn btn-primary my-2">
+</form>
+</div>
+</body>
+</html>

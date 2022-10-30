@@ -1,0 +1,43 @@
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>주문 목록</title>
+</head>
+<body>
+<div layout:fragment="content">
+<h1>주문 목록</h1>
+
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>결제일</th>
+            <th>주문완료여부</th>
+            <th>결제여부</th>
+            <th>취소여부</th>
+            <th>환불여부</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${orders.empty}">
+            <td>주문 없음</td>
+        </tr>
+        <tr th:each="order, index : ${orders}">
+            <th>
+                <a th:href="@{/order/} + ${order.id}" th:text="${index.count}" />
+            </th>
+            <th th:text="${order.payDate}"></th>
+            <th th:text="${order.isOrdered} ? 'O' : 'X'"></th>
+            <th th:text="${order.isPaid} ? 'O' : 'X'"></th>
+            <th th:text="${order.isCanceled} ? 'O' : 'X'"></th>
+            <th th:text="${order.isRefunded} ? 'O' : 'X'"></th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+</body>
+</html>
